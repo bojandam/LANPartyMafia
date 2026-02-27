@@ -5,7 +5,6 @@
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/undo_button_handler.gd" id="3_ma218"]
-[ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/multiplayer_controller.gd" id="6_idohh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")
@@ -203,10 +202,6 @@ text = "Create a room
 
 [node name="LocalMultiplayerManager" type="Node" parent="." unique_id=941465868]
 script = ExtResource("1_3kf3n")
-
-[node name="MultiplayerController" type="Node" parent="." unique_id=1875057474]
-unique_name_in_owner = true
-script = ExtResource("6_idohh")
 
 [connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerManager" method="_on_enter_name_pressed"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerManager" method="_on_join_button_button_down"]
