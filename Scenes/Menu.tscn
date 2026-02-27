@@ -1,0 +1,206 @@
+[gd_scene format=3 uid="uid://d4ixehevprttr"]
+
+[ext_resource type="Script" uid="uid://d181wafurmaw0" path="res://Scripts/multiplayer_manager.gd" id="1_3kf3n"]
+[ext_resource type="StyleBox" uid="uid://c76a20cqr8lt2" path="res://Resourses/ButtonStyle.tres" id="1_6pedr"]
+[ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
+[ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
+[ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/undo_button_handler.gd" id="3_ma218"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
+shader = ExtResource("1_s2c3o")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.63529414, 0.48235294, 0.36078432, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pedr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 40
+border_width_top = 40
+border_width_right = 40
+border_width_bottom = 40
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pedr"]
+font_size = 64
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_beu5a"]
+font_size = 36
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[node name="RootControl" type="Control" unique_id=342738924]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1797017281]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[node name="Header" type="ColorRect" parent="BackgroundRect" unique_id=281928030]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.078
+offset_bottom = -24.840004
+grow_horizontal = 2
+color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/Header" unique_id=847478287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="UndoButton" type="TextureButton" parent="BackgroundRect/Header/MarginContainer" unique_id=198267947]
+material = SubResource("ShaderMaterial_s2c3o")
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("1_syfuq")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="UndoButtonHandler" type="Node" parent="BackgroundRect/Header/MarginContainer/UndoButton" unique_id=2090637024]
+script = ExtResource("3_ma218")
+metadata/_custom_type_script = "uid://ccbckcaq56wsw"
+
+[node name="MainMarginContainer" type="MarginContainer" parent="BackgroundRect" unique_id=1229753052]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.059000004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.5200043
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 150
+
+[node name="NameVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=919868352]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="LogoLabel" type="Label" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer" unique_id=1142636379]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6pedr")
+text = "LAN Party Mafia"
+label_settings = SubResource("LabelSettings_6pedr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer" unique_id=1452273826]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer" unique_id=1326149191]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="NameLabel" type="Label" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/VBoxContainer" unique_id=2088259187]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "What's your name?"
+label_settings = SubResource("LabelSettings_beu5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLineEdit" type="LineEdit" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/VBoxContainer" unique_id=1822422555]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+theme_override_font_sizes/font_size = 36
+placeholder_text = "Your name ..."
+alignment = 1
+
+[node name="EnterName" type="Button" parent="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer" unique_id=1187645555]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+keep_pressed_outside = true
+text = "    Enter    "
+
+[node name="JoinVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=202412062]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="ServerListVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer" unique_id=1596780324]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox" unique_id=1854080205]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Available rooms"
+label_settings = SubResource("LabelSettings_beu5a")
+vertical_alignment = 1
+
+[node name="RoomList" type="ItemList" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox" unique_id=1523319088]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="JoinButton" type="Button" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox" unique_id=1606775018]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+keep_pressed_outside = true
+text = "Join"
+
+[node name="CreateRoomVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer" unique_id=371037876]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Create a room" type="Label" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox" unique_id=1371279400]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Or create a room..."
+label_settings = SubResource("LabelSettings_beu5a")
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox" unique_id=57629014]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+keep_pressed_outside = true
+text = "Create a room
+"
+
+[node name="MultiplayerManager" type="Node" parent="." unique_id=941465868]
+script = ExtResource("1_3kf3n")
+
+[connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="MultiplayerManager" method="_on_enter_name_pressed"]
