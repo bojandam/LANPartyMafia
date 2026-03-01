@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
 [ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
-[ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/multiplayer_controller.gd" id="6_idohh"]
+[ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/lobby_multiplayer_controller.gd" id="6_idohh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")

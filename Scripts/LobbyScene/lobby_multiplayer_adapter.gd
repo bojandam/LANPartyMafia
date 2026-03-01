@@ -42,7 +42,7 @@ func _after_connection_work():
 	lobby_screen.show()
 	if multiplayer.is_server():
 		%StartGameButton.show()
-	print("You need to add what comes next")
+	print("You need to add role selection")
 	UniversalUndoManager.add_action(
 		func():
 			MultiplayerController.disconnect_player()
@@ -51,12 +51,5 @@ func _after_connection_work():
 			%StartGameButton.hide()
 			)
 
-
-@rpc("authority","call_local")
-func StartGame():
-	get_tree().change_scene_to_file("res://Scenes/MainGame.tscn")
-
-
-
 func _on_start_game_button_button_up() -> void:
-	StartGame.rpc()
+	ConnectionManager.StartGame.rpc()
