@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d4ixehevprttr"]
 
-[ext_resource type="Script" uid="uid://d181wafurmaw0" path="res://Scripts/local_multiplayer_manager.gd" id="1_3kf3n"]
+[ext_resource type="Script" uid="uid://d181wafurmaw0" path="res://Scripts/LobbyScene/lobby_multiplayer_adapter.gd" id="1_3kf3n"]
 [ext_resource type="StyleBox" uid="uid://c76a20cqr8lt2" path="res://Resourses/ButtonStyle.tres" id="1_6pedr"]
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
-[ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/undo_button_handler.gd" id="3_ma218"]
-[ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/lobby_player_list.gd" id="5_wfhf6"]
+[ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
+[ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/multiplayer_controller.gd" id="6_idohh"]
 
@@ -260,12 +260,12 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 75
 
-[node name="ServerListVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2" unique_id=1876534220]
+[node name="LobbyVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2" unique_id=1876534220]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 
-[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/ServerListVBox" unique_id=549768963]
+[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=549768963]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jcrr")
@@ -273,11 +273,11 @@ text = "Lobby players:"
 label_settings = SubResource("LabelSettings_beu5a")
 vertical_alignment = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/ServerListVBox" unique_id=1570990267]
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=1570990267]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayerList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/ServerListVBox/ScrollContainer" unique_id=90222171]
+[node name="PlayerList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/ScrollContainer" unique_id=90222171]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -287,7 +287,7 @@ columns = 2
 script = ExtResource("5_wfhf6")
 metadata/_custom_type_script = "uid://cn2ixqtrn4hdb"
 
-[node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/ServerListVBox/ScrollContainer/PlayerList" unique_id=1796398421]
+[node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -297,6 +297,15 @@ label_settings = SubResource("LabelSettings_wfhf6")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
+
+[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=2044226493]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+text = "Start Game"
 
 [node name="ReconnectPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1553960554]
 visible = false
@@ -385,13 +394,14 @@ texture_normal = ExtResource("6_3jcrr")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="LocalMultiplayerManager" type="Node" parent="." unique_id=941465868]
+[node name="LocalMultiplayerAdapter" type="Node" parent="." unique_id=941465868]
 script = ExtResource("1_3kf3n")
 
 [node name="MultiplayerController" type="Node" parent="." unique_id=1875057474]
 unique_name_in_owner = true
 script = ExtResource("6_idohh")
 
-[connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerManager" method="_on_enter_name_pressed"]
-[connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerManager" method="_on_join_button_button_down"]
-[connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox/HostButton" to="LocalMultiplayerManager" method="_on_host_button_button_down"]
+[connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerAdapter" method="_on_enter_name_pressed"]
+[connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerAdapter" method="_on_join_button_button_down"]
+[connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox/HostButton" to="LocalMultiplayerAdapter" method="_on_host_button_button_down"]
+[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]

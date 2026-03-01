@@ -8,9 +8,7 @@ signal server_disconnected
 
 const PORT = 9999
 
-var player_info:Dictionary = {}
-var prev_ip:String = ""
-var is_server = false
+
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
@@ -26,9 +24,9 @@ func host_game():
 	if error == OK:
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		multiplayer.multiplayer_peer = peer
-		player_info["id"]=multiplayer.get_unique_id()
-		_send_player_information(player_info)
-		is_server = true
+		ConnectionManager.player_info["id"]=multiplayer.get_unique_id()
+		_send_player_information(ConnectionManager.player_info)
+		ConnectionManager.was_server = true
 	return error
 
 func join_game(adress:String):
@@ -39,8 +37,8 @@ func join_game(adress:String):
 	if error == OK:
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		multiplayer.multiplayer_peer = peer
-		prev_ip = adress
-		is_server = false
+		ConnectionManager.previous_ip=adress
+		ConnectionManager.was_server = false
 	return error
 
 func disconnect_player():
@@ -56,15 +54,17 @@ func _on_peer_disconnected(id:int):
 	print("peer disconnected: ",id)
 
 func _on_connected_to_server():
-	player_info["id"]= multiplayer.get_unique_id()
+	ConnectionManager.player_info["id"]= multiplayer.get_unique_id()
 	await get_tree().create_timer(.2).timeout
-	_send_player_information.rpc(player_info)
-	print(player_info["name"]," connected to server :)")
+	_send_player_information.rpc(ConnectionManager.player_info)
+	print(ConnectionManager.player_info["name"]," connected to server :)")
 
 func _on_connection_failed():
+	disconnect_player()
 	print("Connection failed :(")
 
 func _on_server_disconnected():
+	disconnect_player()
 	print("Server Disconnected :(((")
 
  
@@ -84,4 +84,4 @@ func remove_peer(id:int):
 	PlayersManager.remove_player(id)
 
 func set_local_name(player_name:String):
-	player_info["name"] = player_name
+	ConnectionManager.player_info["name"] = player_name
