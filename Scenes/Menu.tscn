@@ -5,7 +5,8 @@
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/undo_button_handler.gd" id="3_ma218"]
-[ext_resource type="Script" uid="uid://cn2ixqtrn4hdb" path="res://Scripts/player_list.gd" id="5_wfhf6"]
+[ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/lobby_player_list.gd" id="5_wfhf6"]
+[ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/multiplayer_controller.gd" id="6_idohh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
@@ -55,6 +56,38 @@ border_blend = true
 font_size = 45
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab40c"]
+bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_3jcrr"]
+font_size = 33
+font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+shadow_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aobxe"]
+font_size = 24
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aobxe"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
+shader = ExtResource("1_s2c3o")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
+shader_parameter/tolerance = 0.0
+
 [node name="RootControl" type="Control" unique_id=342738924]
 layout_mode = 3
 anchors_preset = 15
@@ -81,7 +114,7 @@ offset_bottom = -24.840004
 grow_horizontal = 2
 color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/Header" unique_id=847478287]
+[node name="TopMarginContainer" type="MarginContainer" parent="BackgroundRect/Header" unique_id=847478287]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,7 +126,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="UndoButton" type="TextureButton" parent="BackgroundRect/Header/MarginContainer" unique_id=198267947]
+[node name="UndoButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=198267947]
 material = SubResource("ShaderMaterial_s2c3o")
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
@@ -102,7 +135,7 @@ texture_normal = ExtResource("1_syfuq")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="UndoButtonHandler" type="Node" parent="BackgroundRect/Header/MarginContainer/UndoButton" unique_id=2090637024]
+[node name="UndoButtonHandler" type="Node" parent="BackgroundRect/Header/TopMarginContainer/UndoButton" unique_id=2090637024]
 script = ExtResource("3_ma218")
 metadata/_custom_type_script = "uid://ccbckcaq56wsw"
 
@@ -264,6 +297,93 @@ label_settings = SubResource("LabelSettings_wfhf6")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
+
+[node name="ReconnectPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1553960554]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.21176471, 0.22352941, 0.72156864)
+
+[node name="ReconnectMarginContainer" type="CenterContainer" parent="BackgroundRect/ReconnectPopUp" unique_id=1668060819]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer" unique_id=1898057876]
+custom_minimum_size = Vector2(550, 350)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer" unique_id=1212768980]
+layout_mode = 2
+color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect" unique_id=1715908513]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer" unique_id=1784704096]
+layout_mode = 2
+
+[node name="TopLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1022874626]
+layout_mode = 2
+text = "You've disconnected :("
+label_settings = SubResource("LabelSettings_3jcrr")
+horizontal_alignment = 1
+
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1882211805]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MidLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=1627997935]
+custom_minimum_size = Vector2(50, 1)
+layout_mode = 2
+text = "But don't worry! You can attempt to reconnect to the room you were in!"
+label_settings = SubResource("LabelSettings_aobxe")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ReconnectButton" type="Button" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1839646675]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_aobxe")
+text = "Reconnect
+"
+
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/ReconnectPopUp" unique_id=10307539]
+z_index = 2
+material = SubResource("ShaderMaterial_aobxe")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 573.0
+offset_top = 467.0
+offset_right = 633.0
+offset_bottom = 527.0
+pivot_offset = Vector2(30, 30)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("6_3jcrr")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="LocalMultiplayerManager" type="Node" parent="." unique_id=941465868]
 script = ExtResource("1_3kf3n")

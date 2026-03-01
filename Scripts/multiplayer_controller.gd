@@ -9,7 +9,8 @@ signal server_disconnected
 const PORT = 9999
 
 var player_info:Dictionary = {}
-
+var prev_ip:String = ""
+var is_server = false
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
@@ -27,6 +28,7 @@ func host_game():
 		multiplayer.multiplayer_peer = peer
 		player_info["id"]=multiplayer.get_unique_id()
 		_send_player_information(player_info)
+		is_server = true
 	return error
 
 func join_game(adress:String):
@@ -37,17 +39,18 @@ func join_game(adress:String):
 	if error == OK:
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		multiplayer.multiplayer_peer = peer
+		prev_ip = adress
+		is_server = false
 	return error
 
 func disconnect_player():
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-	GameManager.get_player_list().clear()
+	PlayersManager.get_player_list().clear()
 
 func _on_peer_connected(id:int):
 	print("Peer connected: ",id)
 
 func _on_peer_disconnected(id:int):
-	#To do: Make the server save the name, role and status so that reconnection is possible
 	remove_peer(id)
 	peer_disconnected.emit(id)
 	print("peer disconnected: ",id)
@@ -68,17 +71,17 @@ func _on_server_disconnected():
 @rpc("any_peer","call_local")
 func _send_player_information(sender_info:Dictionary):
 	var sender_id = sender_info["id"]
-	if not GameManager.get_player_list().has(sender_id):
-		GameManager.add_player(sender_info)
+	if not PlayersManager.get_player_list().has(sender_id):
+		PlayersManager.add_player(sender_info)
 	if multiplayer.is_server() and sender_info["id"] != multiplayer.get_unique_id():
-		_send_servers_player_list.rpc_id(sender_id,GameManager.get_player_list())
+		_send_servers_player_list.rpc_id(sender_id,PlayersManager.get_player_list())
 
 @rpc("authority")
 func _send_servers_player_list(servers_player_list:Dictionary[int,Dictionary]):
-	GameManager.set_player_list(servers_player_list)
+	PlayersManager.set_player_list(servers_player_list)
 
 func remove_peer(id:int):
-	GameManager.remove_player(id)
+	PlayersManager.remove_player(id)
 
 func set_local_name(player_name:String):
 	player_info["name"] = player_name
