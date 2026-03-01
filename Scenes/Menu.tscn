@@ -255,17 +255,17 @@ keep_pressed_outside = true
 text = "Create a room
 "
 
-[node name="LobbyVBoxContainer2" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=181654514]
+[node name="LobbyVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=181654514]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 75
 
-[node name="LobbyVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2" unique_id=1876534220]
+[node name="LobbyVBox" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer" unique_id=1876534220]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 
-[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=549768963]
+[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=549768963]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jcrr")
@@ -273,11 +273,11 @@ text = "Lobby players:"
 label_settings = SubResource("LabelSettings_beu5a")
 vertical_alignment = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=1570990267]
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=1570990267]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayerList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/ScrollContainer" unique_id=90222171]
+[node name="PlayerList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/ScrollContainer" unique_id=90222171]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -287,7 +287,7 @@ columns = 2
 script = ExtResource("5_wfhf6")
 metadata/_custom_type_script = "uid://cn2ixqtrn4hdb"
 
-[node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
+[node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -298,7 +298,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox" unique_id=2044226493]
+[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=2044226493]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -404,4 +404,4 @@ script = ExtResource("6_idohh")
 [connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerAdapter" method="_on_enter_name_pressed"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerAdapter" method="_on_join_button_button_down"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox/HostButton" to="LocalMultiplayerAdapter" method="_on_host_button_button_down"]
-[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer2/LobbyVBox/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]
+[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]

@@ -1,21 +1,14 @@
 extends Node
 
-
-
-signal peer_connected(peer_id, player_info)
-signal peer_disconnected(peer_id)
-signal server_disconnected
-
 const PORT = 9999
 
 
-
 func _ready():
-	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
-	multiplayer.connection_failed.connect(_on_connection_failed)
-	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+func disconnect_player():
+	multiplayer.set_multiplayer_peer(OfflineMultiplayerPeer.new())
 
 
 func host_game():
@@ -23,65 +16,37 @@ func host_game():
 	var error = peer.create_server(PORT)
 	if error == OK:
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-		multiplayer.multiplayer_peer = peer
+		multiplayer.set_multiplayer_peer(peer)
 		ConnectionManager.player_info["id"]=multiplayer.get_unique_id()
-		_send_player_information(ConnectionManager.player_info)
-		ConnectionManager.was_server = true
+		if ConnectionManager.game_settings.get_flag(Settings.Flags.Server_is_a_player):
+			_send_player_information(ConnectionManager.player_info)
 	return error
 
-func join_game(adress:String):
-	if adress.is_empty():
+func join_game(ip:String):
+	if ip.is_empty():
 		return FAILED
 	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client(adress,PORT)
+	var error = peer.create_client(ip,PORT)
 	if error == OK:
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-		multiplayer.multiplayer_peer = peer
-		ConnectionManager.previous_ip=adress
-		ConnectionManager.was_server = false
+		multiplayer.set_multiplayer_peer(peer)
 	return error
 
-func disconnect_player():
-	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-	PlayersManager.get_player_list().clear()
-
-func _on_peer_connected(id:int):
-	print("Peer connected: ",id)
-
-func _on_peer_disconnected(id:int):
-	remove_peer(id)
-	peer_disconnected.emit(id)
-	print("peer disconnected: ",id)
-
 func _on_connected_to_server():
-	ConnectionManager.player_info["id"]= multiplayer.get_unique_id()
+	ConnectionManager.player_info["id"]=multiplayer.get_unique_id()
 	await get_tree().create_timer(.2).timeout
 	_send_player_information.rpc(ConnectionManager.player_info)
-	print(ConnectionManager.player_info["name"]," connected to server :)")
 
-func _on_connection_failed():
-	disconnect_player()
-	print("Connection failed :(")
-
-func _on_server_disconnected():
-	disconnect_player()
-	print("Server Disconnected :(((")
-
- 
-@rpc("any_peer","call_local")
-func _send_player_information(sender_info:Dictionary):
-	var sender_id = sender_info["id"]
-	if not PlayersManager.get_player_list().has(sender_id):
-		PlayersManager.add_player(sender_info)
-	if multiplayer.is_server() and sender_info["id"] != multiplayer.get_unique_id():
-		_send_servers_player_list.rpc_id(sender_id,PlayersManager.get_player_list())
+@rpc("any_peer")
+func _send_player_information(player_info:Dictionary):
+	if player_info["id"] not in PlayersManager.get_players().keys():
+		PlayersManager.add_player(player_info)
+	if multiplayer.is_server() and player_info["id"]!=1:
+		_send_server_player_dict.rpc_id(player_info["id"],PlayersManager.get_players())
 
 @rpc("authority")
-func _send_servers_player_list(servers_player_list:Dictionary[int,Dictionary]):
-	PlayersManager.set_player_list(servers_player_list)
+func _send_server_player_dict(player_dict):
+	PlayersManager.set_player_dict(player_dict)
 
-func remove_peer(id:int):
+func _on_peer_disconnected(id:int):
 	PlayersManager.remove_player(id)
-
-func set_local_name(player_name:String):
-	ConnectionManager.player_info["name"] = player_name

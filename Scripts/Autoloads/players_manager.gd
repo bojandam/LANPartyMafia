@@ -8,8 +8,8 @@ signal player_removed(player_info:Dictionary)
 var _players:Dictionary[int,Dictionary] #id -> Player
 
 
-func set_player_list(player_list:Dictionary[int,Dictionary]):
-	_players=player_list
+func set_player_dict(player_dict:Dictionary[int,Dictionary]):
+	_players=player_dict
 	player_list_set.emit(_players)
 
 func add_player(player_info:Dictionary):
@@ -21,5 +21,5 @@ func remove_player(id:int):
 	_players.erase(id)
 	player_removed.emit(removed)
 
-func get_player_list()->Dictionary[int,Dictionary]:
+func get_players()->Dictionary[int,Dictionary]:
 	return _players
