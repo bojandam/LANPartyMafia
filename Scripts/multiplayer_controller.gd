@@ -41,20 +41,21 @@ func join_game(adress:String):
 
 func disconnect_player():
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-	GameManager.players.clear()
+	GameManager.get_player_list().clear()
 
 func _on_peer_connected(id:int):
 	print("Peer connected: ",id)
 
 func _on_peer_disconnected(id:int):
+	#To do: Make the server save the name, role and status so that reconnection is possible
 	remove_peer(id)
 	peer_disconnected.emit(id)
 	print("peer disconnected: ",id)
 
 func _on_connected_to_server():
 	player_info["id"]= multiplayer.get_unique_id()
- 
-	_send_player_information.rpc_id(1,player_info)
+	await get_tree().create_timer(.2).timeout
+	_send_player_information.rpc(player_info)
 	print(player_info["name"]," connected to server :)")
 
 func _on_connection_failed():
@@ -64,19 +65,20 @@ func _on_server_disconnected():
 	print("Server Disconnected :(((")
 
  
-@rpc("any_peer","call_remote")
+@rpc("any_peer","call_local")
 func _send_player_information(sender_info:Dictionary):
 	var sender_id = sender_info["id"]
-	if not GameManager.players.has(sender_id):
-		GameManager.players[sender_id] = sender_info
-	if multiplayer.is_server():
-		for peer_info in GameManager.players.values():
-			_send_player_information.rpc(peer_info)
-		 
+	if not GameManager.get_player_list().has(sender_id):
+		GameManager.add_player(sender_info)
+	if multiplayer.is_server() and sender_info["id"] != multiplayer.get_unique_id():
+		_send_servers_player_list.rpc_id(sender_id,GameManager.get_player_list())
 
+@rpc("authority")
+func _send_servers_player_list(servers_player_list:Dictionary[int,Dictionary]):
+	GameManager.set_player_list(servers_player_list)
 
 func remove_peer(id:int):
-	GameManager.players.erase(id)
+	GameManager.remove_player(id)
 
 func set_local_name(player_name:String):
 	player_info["name"] = player_name
