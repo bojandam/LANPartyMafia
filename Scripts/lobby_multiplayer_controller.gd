@@ -7,9 +7,13 @@ func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 
+
 func disconnect_player():
 	multiplayer.set_multiplayer_peer(OfflineMultiplayerPeer.new())
 
+@rpc("authority")
+func _kick():
+	UniversalUndoManager.undo()
 
 func host_game():
 	var peer = ENetMultiplayerPeer.new()

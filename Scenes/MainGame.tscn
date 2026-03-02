@@ -7,7 +7,7 @@
 font_size = 35
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
-[node name="Control" type="Control" unique_id=1294606147]
+[node name="RootControl" type="Control" unique_id=1294606147]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,9 +70,10 @@ theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 150
 
-[node name="MultiplayerControler" type="Node" parent="." unique_id=2020333862]
+[node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
 unique_name_in_owner = true
 script = ExtResource("1_frf35")
 
 [node name="MultiplayerAdapter" type="Node" parent="." unique_id=2081972608]
+unique_name_in_owner = true
 script = ExtResource("2_frf35")
