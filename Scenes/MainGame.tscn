@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yr3sgyv7iw33"]
 
-[ext_resource type="Script" uid="uid://wfxobcsajp0f" path="res://Scenes/main_multiplayer_controler.gd" id="1_frf35"]
+[ext_resource type="Script" uid="uid://wfxobcsajp0f" path="res://Scripts/MainGame/main_multiplayer_controler.gd" id="1_frf35"]
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mh0ok"]

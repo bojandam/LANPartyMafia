@@ -21,5 +21,9 @@ func remove_player(id:int):
 	_players.erase(id)
 	player_removed.emit(removed)
 
+func clear_players():
+	_players.clear()
+	player_list_set.emit(_players)
+
 func get_players()->Dictionary[int,Dictionary]:
 	return _players

@@ -6,14 +6,20 @@ const PORT = 9999
 func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
 func disconnect_player():
 	multiplayer.set_multiplayer_peer(OfflineMultiplayerPeer.new())
+	PlayersManager.clear_players()
 
 @rpc("authority")
 func _kick():
 	UniversalUndoManager.undo()
+
+func _on_server_disconnected():
+	UniversalUndoManager.undo()
+
 
 func host_game():
 	var peer = ENetMultiplayerPeer.new()

@@ -7,6 +7,7 @@ func _ready() -> void:
 	PlayersManager.player_added.connect(_on_player_added)
 	PlayersManager.player_removed.connect(_on_player_removed)
 	PlayersManager.player_list_set.connect(refresh)
+	
 
 func _on_player_removed(player_info:Dictionary):
 	remove_name(player_info["id"])

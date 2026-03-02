@@ -30,8 +30,7 @@ func remove_name(id:int):
 			return
 
 func refresh(player_list:Dictionary[int,Dictionary]):
-	var children_list:Array = get_children()
-	for child:Node in children_list:
+	for child:Node in get_children():
 		child.queue_free()
 	for player_info:Dictionary in player_list.values():
 		add_name(player_info,_base_children[0])

@@ -42,6 +42,7 @@ func _after_connection_work():
 	lobby_screen.show()
 	if multiplayer.is_server():
 		%StartGameButton.show()
+		%SettingsButton.show()
 	print("You need to add role selection")
 	UniversalUndoManager.add_action(
 		func():
@@ -49,6 +50,7 @@ func _after_connection_work():
 			lobby_screen.hide()
 			%JoinVBoxContainer.show()
 			%StartGameButton.hide()
+			%SettingsButton.hide()
 			)
 
 func _on_start_game_button_button_up() -> void:

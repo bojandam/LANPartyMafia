@@ -5,15 +5,28 @@
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
+[ext_resource type="Texture2D" uid="uid://cgrpxlqkp3rpk" path="res://Icons/Settings.png" id="4_aobxe"]
 [ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/lobby_multiplayer_controller.gd" id="6_idohh"]
+[ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scenes/TurnOff.gd" id="8_a8aa6"]
+[ext_resource type="Script" uid="uid://cs15cfmasckts" path="res://Scripts/base_settings_list.gd" id="8_byewe"]
+[ext_resource type="Script" uid="uid://c1ohgifsr6als" path="res://Scripts/LobbyScene/setting_container.gd" id="8_qki4b"]
+[ext_resource type="Texture2D" uid="uid://bdhny7ghkxvl6" path="res://Icons/check-square (1).svg" id="8_sjh0l"]
+[ext_resource type="Texture2D" uid="uid://ctaet54xrqmur" path="res://Icons/square (1).svg" id="9_qki4b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.63529414, 0.48235294, 0.36078432, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ab40c"]
+shader = ExtResource("1_s2c3o")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.8627451, 0.84313726, 0.7882353, 1)
 shader_parameter/tolerance = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pedr"]
@@ -65,6 +78,13 @@ border_width_bottom = 8
 border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
+shader = ExtResource("1_s2c3o")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
+shader_parameter/tolerance = 0.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_3jcrr"]
 font_size = 33
 font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
@@ -81,7 +101,11 @@ content_margin_right = 20.0
 content_margin_bottom = 15.0
 bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
+[sub_resource type="LabelSettings" id="LabelSettings_ab40c"]
+font_size = 24
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjh0l"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
@@ -138,6 +162,21 @@ stretch_mode = 4
 [node name="UndoButtonHandler" type="Node" parent="BackgroundRect/Header/TopMarginContainer/UndoButton" unique_id=2090637024]
 script = ExtResource("3_ma218")
 metadata/_custom_type_script = "uid://ccbckcaq56wsw"
+
+[node name="SettingsButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=1124826854 node_paths=PackedStringArray("parent")]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ab40c")
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("4_aobxe")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_a8aa6")
+parent = NodePath("../../../SettingsPopUp")
+show = true
+metadata/_custom_type_script = "uid://chihrg5my1873"
 
 [node name="MainMarginContainer" type="MarginContainer" parent="BackgroundRect" unique_id=1229753052]
 layout_mode = 1
@@ -317,7 +356,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.17254902, 0.21176471, 0.22352941, 0.72156864)
 
-[node name="ReconnectMarginContainer" type="CenterContainer" parent="BackgroundRect/ReconnectPopUp" unique_id=1668060819]
+[node name="ReconnectCenterContainer" type="CenterContainer" parent="BackgroundRect/ReconnectPopUp" unique_id=1668060819]
 z_index = 2
 layout_mode = 1
 anchors_preset = 15
@@ -326,16 +365,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer" unique_id=1898057876]
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer" unique_id=1898057876]
 custom_minimum_size = Vector2(550, 350)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer" unique_id=1212768980]
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer" unique_id=10307539]
+z_index = 2
+material = SubResource("ShaderMaterial_aobxe")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("6_3jcrr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BgColorRect" type="ColorRect" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer" unique_id=1212768980]
 layout_mode = 2
 color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect" unique_id=1715908513]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect" unique_id=1715908513]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -347,20 +397,20 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer" unique_id=1784704096]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect/MarginContainer" unique_id=1784704096]
 layout_mode = 2
 
-[node name="TopLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1022874626]
+[node name="TopLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1022874626]
 layout_mode = 2
 text = "You've disconnected :("
 label_settings = SubResource("LabelSettings_3jcrr")
 horizontal_alignment = 1
 
-[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1882211805]
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1882211805]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MidLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=1627997935]
+[node name="MidLabel" type="Label" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=1627997935]
 custom_minimum_size = Vector2(50, 1)
 layout_mode = 2
 text = "But don't worry! You can attempt to reconnect to the room you were in!"
@@ -369,7 +419,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ReconnectButton" type="Button" parent="BackgroundRect/ReconnectPopUp/ReconnectMarginContainer/PanelContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1839646675]
+[node name="ReconnectButton" type="Button" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1839646675]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
@@ -378,21 +428,112 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_aobxe")
 text = "Reconnect
 "
 
-[node name="CancelButton" type="TextureButton" parent="BackgroundRect/ReconnectPopUp" unique_id=10307539]
+[node name="SettingsPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1628681435]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.21176471, 0.22352941, 0.72156864)
+
+[node name="SettingsCenterContainer" type="CenterContainer" parent="BackgroundRect/SettingsPopUp" unique_id=405545207]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer" unique_id=188896791]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer" unique_id=1664055640]
+custom_minimum_size = Vector2(550, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
+
+[node name="BgColorRect" type="ColorRect" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=1463330550]
+layout_mode = 2
+color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect" unique_id=1756504660]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer" unique_id=1291193826]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="TopLabel" type="Label" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=2105100073]
+layout_mode = 2
+text = "Game Settings"
+label_settings = SubResource("LabelSettings_3jcrr")
+horizontal_alignment = 1
+
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=51243069]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=1889199828]
+layout_mode = 2
+
+[node name="BaseSettingsList" type="VBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer" unique_id=1063617150]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("8_byewe")
+
+[node name="SettingContainer" type="HBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList" unique_id=1757760976]
+layout_mode = 2
+script = ExtResource("8_qki4b")
+
+[node name="SettingText" type="Label" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=2080256072]
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game settings text"
+label_settings = SubResource("LabelSettings_ab40c")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SettingCheckBox" type="TextureButton" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=1288175154]
+material = SubResource("ShaderMaterial_sjh0l")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("9_qki4b")
+texture_pressed = ExtResource("8_sjh0l")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=2144495981 node_paths=PackedStringArray("parent")]
 z_index = 2
 material = SubResource("ShaderMaterial_aobxe")
 custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_left = 573.0
-offset_top = 467.0
-offset_right = 633.0
-offset_bottom = 527.0
-pivot_offset = Vector2(30, 30)
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture_normal = ExtResource("6_3jcrr")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("8_a8aa6")
+parent = NodePath("../../../..")
+metadata/_custom_type_script = "uid://chihrg5my1873"
 
 [node name="LocalMultiplayerAdapter" type="Node" parent="." unique_id=941465868]
 script = ExtResource("1_3kf3n")
