@@ -1,8 +1,7 @@
 extends VBoxContainer
 
 
-var _base_child:SettingContainer 
-
+var _base_child:SettingContainer
 func _ready():
 	_base_child = $SettingContainer
 	remove_child(_base_child)

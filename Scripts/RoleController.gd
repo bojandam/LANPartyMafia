@@ -1,5 +1,4 @@
 extends Node
-class_name RoleController
 
 enum Effects{Rumored, Disabled, Defended, Healed}
 enum Teams{Village,Mafia,Maniac}
@@ -25,17 +24,17 @@ enum Roles{
 
 var role_info:Dictionary[Roles,Dictionary] =  {
 	Roles.Villager:{"team":Teams.Village,},
-	Roles.Doctor:{"team":Teams.Village,},
-	Roles.Beauty:{"team":Teams.Village,},
+	Roles.Doctor:{"team":Teams.Village,"default":1},
+	Roles.Beauty:{"team":Teams.Village,"default":1},
 	Roles.Sherif:{"team":Teams.Village,},
-	Roles.Sergant:{"team":Teams.Village,},
-	Roles.Detective:{"team":Teams.Village,},
-	Roles.Bodyguard:{"team":Teams.Village,},
+	Roles.Sergant:{"team":Teams.Village,"max":1,},
+	Roles.Detective:{"team":Teams.Village,"default":1},
+	Roles.Bodyguard:{"team":Teams.Village,"max":1,},
 	Roles.Undying:{"team":Teams.Village,},
 	Roles.Sleepwalker:{"team":Teams.Village,},
 	Roles.Werewolf:{"team":Teams.Village,},
-	Roles.Mafia:{"team":Teams.Mafia,},
+	Roles.Mafia:{"team":Teams.Mafia,"default":1},
 	Roles.Boss:{"team":Teams.Mafia,},
 	Roles.Informant:{"team":Teams.Mafia,},
-	Roles.Maniac:{"team":Teams.Maniac,},
+	Roles.Maniac:{"team":Teams.Maniac,"max":1,},
 }

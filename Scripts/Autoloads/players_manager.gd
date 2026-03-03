@@ -27,3 +27,5 @@ func clear_players():
 
 func get_players()->Dictionary[int,Dictionary]:
 	return _players
+func get_player_count():
+	return _players.size()

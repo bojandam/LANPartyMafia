@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c5xc7htbhv1m6"]
+
+[ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_emxqx"]
+[ext_resource type="Texture2D" uid="uid://ddmdl4snkxkm7" path="res://Icons/plus-square-solid.svg" id="1_ixqrv"]
+[ext_resource type="Script" uid="uid://drdfyvsfm386h" path="res://Scripts/plus_minus_field.gd" id="1_og453"]
+[ext_resource type="Texture2D" uid="uid://1a0vuhiyg5f7" path="res://Icons/minus-square-solid.svg" id="2_wcvae"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wcvae"]
+shader = ExtResource("1_emxqx")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.17254902, 0.21176471, 0.22352941, 1)
+shader_parameter/tolerance = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_og453"]
+font_size = 24
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[node name="PlusMinusField" type="HBoxContainer" unique_id=2134059536]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_og453")
+
+[node name="Minus" type="TextureButton" parent="." unique_id=1442158295]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wcvae")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture_normal = ExtResource("2_wcvae")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=1602985760]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_og453")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Plus" type="TextureButton" parent="." unique_id=1703066833]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wcvae")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture_normal = ExtResource("1_ixqrv")
+ignore_texture_size = true
+stretch_mode = 5

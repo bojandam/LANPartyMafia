@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 UniversalUndoManager="*uid://bknge3sq58aea"
 PlayersManager="*uid://rrfljbo7wnrc"
 ConnectionManager="*uid://4hpcoj0ri8w2"
+RoleController="*uid://dvrxvfd8h5a77"
 
 [display]
 

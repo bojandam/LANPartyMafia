@@ -4,6 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://c76a20cqr8lt2" path="res://Resourses/ButtonStyle.tres" id="1_6pedr"]
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
+[ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_x0ao6"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
 [ext_resource type="Texture2D" uid="uid://cgrpxlqkp3rpk" path="res://Icons/Settings.png" id="4_aobxe"]
 [ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
@@ -14,6 +15,9 @@
 [ext_resource type="Script" uid="uid://c1ohgifsr6als" path="res://Scripts/LobbyScene/setting_container.gd" id="8_qki4b"]
 [ext_resource type="Texture2D" uid="uid://bdhny7ghkxvl6" path="res://Icons/check-square (1).svg" id="8_sjh0l"]
 [ext_resource type="Texture2D" uid="uid://ctaet54xrqmur" path="res://Icons/square (1).svg" id="9_qki4b"]
+[ext_resource type="PackedScene" uid="uid://c5xc7htbhv1m6" path="res://Scenes/PlusMinusInput.tscn" id="14_dsmso"]
+[ext_resource type="Script" uid="uid://dy2x56bkdyl22" path="res://Scenes/role_selector_list.gd" id="14_krje8"]
+[ext_resource type="Script" uid="uid://8r27wdfy53fx" path="res://Scenes/RoleCounter.gd" id="14_t8p2w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")
@@ -112,6 +116,19 @@ shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
 shader_parameter/tolerance = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_dsmso"]
+font_size = 24
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+shadow_size = 0
+shadow_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsmso"]
+bg_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t8p2w"]
+font_size = 36
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
 [node name="RootControl" type="Control" unique_id=342738924]
 layout_mode = 3
 anchors_preset = 15
@@ -119,6 +136,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_x0ao6")
 
 [node name="BackgroundRect" type="ColorRect" parent="." unique_id=1797017281]
 layout_mode = 1
@@ -519,15 +537,14 @@ texture_pressed = ExtResource("8_sjh0l")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RoleSelectionButton" type="Button" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=27144238]
+[node name="RoleSelectionButton" type="Button" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=27144238 node_paths=PackedStringArray("parent")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("1_6pedr")
 text = "Roles"
 script = ExtResource("8_a8aa6")
+parent = NodePath("../../../../../../../../RolePopUp")
+show = true
 
 [node name="CancelButton" type="TextureButton" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=2144495981 node_paths=PackedStringArray("parent")]
 material = SubResource("ShaderMaterial_aobxe")
@@ -602,22 +619,68 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=325348023]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=124730537]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2059900026]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=2073698734]
 layout_mode = 2
 
-[node name="BaseSettingsList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer" unique_id=1522659101]
+[node name="RoleName" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1189530137]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role"
+label_settings = SubResource("LabelSettings_dsmso")
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=144364769]
+custom_minimum_size = Vector2(120, 10)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Amount"
+label_settings = SubResource("LabelSettings_dsmso")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1100648994]
+custom_minimum_size = Vector2(130, 10)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Required"
+label_settings = SubResource("LabelSettings_dsmso")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=866488028]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsmso")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=325348023]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RoleSelectorList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer" unique_id=1522659101]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
-script = ExtResource("8_byewe")
+script = ExtResource("14_krje8")
 
-[node name="SettingContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList" unique_id=1303294682]
+[node name="RoleContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList" unique_id=1303294682]
 layout_mode = 2
-script = ExtResource("8_qki4b")
+script = ExtResource("14_t8p2w")
 
-[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=1577140263]
-custom_minimum_size = Vector2(300, 10)
+[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1577140263]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Role Name"
@@ -625,25 +688,21 @@ label_settings = SubResource("LabelSettings_ab40c")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="InCheckBox" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=752420136]
-material = SubResource("ShaderMaterial_sjh0l")
-custom_minimum_size = Vector2(36, 36)
+[node name="Ammount" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=2134059536 instance=ExtResource("14_dsmso")]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("9_qki4b")
-texture_pressed = ExtResource("8_sjh0l")
-ignore_texture_size = true
-stretch_mode = 5
 
-[node name="RoleSelectionButton" type="Button" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=16325023]
-custom_minimum_size = Vector2(200, 0)
+[node name="Required" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1231747915 instance=ExtResource("14_dsmso")]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("1_6pedr")
-text = "Roles"
-script = ExtResource("8_a8aa6")
+
+[node name="Label" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=572361618]
+layout_mode = 2
+theme = ExtResource("1_x0ao6")
+text = "10/16 Roles selected"
+label_settings = SubResource("LabelSettings_t8p2w")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=991840945 node_paths=PackedStringArray("parent")]
 material = SubResource("ShaderMaterial_aobxe")
