@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/lobby_multiplayer_controller.gd" id="6_idohh"]
-[ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scenes/TurnOff.gd" id="8_a8aa6"]
+[ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scripts/VisisbilityButtonHandler.gd" id="8_a8aa6"]
 [ext_resource type="Script" uid="uid://cs15cfmasckts" path="res://Scripts/base_settings_list.gd" id="8_byewe"]
 [ext_resource type="Script" uid="uid://c1ohgifsr6als" path="res://Scripts/LobbyScene/setting_container.gd" id="8_qki4b"]
 [ext_resource type="Texture2D" uid="uid://bdhny7ghkxvl6" path="res://Icons/check-square (1).svg" id="8_sjh0l"]
@@ -78,13 +78,6 @@ border_width_bottom = 8
 border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
-shader = ExtResource("1_s2c3o")
-shader_parameter/colorCount = 1
-shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
-shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
-shader_parameter/tolerance = 0.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_3jcrr"]
 font_size = 33
 font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
@@ -100,6 +93,13 @@ content_margin_top = 15.0
 content_margin_right = 20.0
 content_margin_bottom = 15.0
 bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
+shader = ExtResource("1_s2c3o")
+shader_parameter/colorCount = 1
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
+shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
+shader_parameter/tolerance = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ab40c"]
 font_size = 24
@@ -150,7 +150,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="UndoButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=198267947]
+[node name="UndoButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=198267947 groups=["hidden"]]
 material = SubResource("ShaderMaterial_s2c3o")
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
@@ -163,9 +163,8 @@ stretch_mode = 4
 script = ExtResource("3_ma218")
 metadata/_custom_type_script = "uid://ccbckcaq56wsw"
 
-[node name="SettingsButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=1124826854 node_paths=PackedStringArray("parent")]
+[node name="SettingsButton" type="TextureButton" parent="BackgroundRect/Header/TopMarginContainer" unique_id=1124826854 node_paths=PackedStringArray("parent") groups=["hidden"]]
 unique_name_in_owner = true
-visible = false
 material = SubResource("ShaderMaterial_ab40c")
 custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
@@ -192,7 +191,7 @@ theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 150
 
-[node name="NameVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=919868352]
+[node name="NameVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=919868352 groups=["shown"]]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -239,7 +238,7 @@ theme_override_styles/normal = ExtResource("1_6pedr")
 keep_pressed_outside = true
 text = "    Enter    "
 
-[node name="JoinVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=202412062]
+[node name="JoinVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=202412062 groups=["hidden"]]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -294,7 +293,7 @@ keep_pressed_outside = true
 text = "Create a room
 "
 
-[node name="LobbyVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=181654514]
+[node name="LobbyVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=181654514 groups=["hidden"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 75
@@ -346,7 +345,7 @@ theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = ExtResource("1_6pedr")
 text = "Start Game"
 
-[node name="ReconnectPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1553960554]
+[node name="ReconnectPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1553960554 groups=["hidden"]]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -369,17 +368,6 @@ grow_vertical = 2
 custom_minimum_size = Vector2(550, 350)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
-
-[node name="CancelButton" type="TextureButton" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer" unique_id=10307539]
-z_index = 2
-material = SubResource("ShaderMaterial_aobxe")
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = ExtResource("6_3jcrr")
-ignore_texture_size = true
-stretch_mode = 5
 
 [node name="BgColorRect" type="ColorRect" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer" unique_id=1212768980]
 layout_mode = 2
@@ -428,8 +416,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_aobxe")
 text = "Reconnect
 "
 
-[node name="SettingsPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1628681435]
-visible = false
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/ReconnectPopUp/ReconnectCenterContainer/PanelContainer" unique_id=10307539]
+material = SubResource("ShaderMaterial_aobxe")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("6_3jcrr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SettingsPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1628681435 groups=["hidden"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -473,7 +470,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer" unique_id=1291193826]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 60
 
 [node name="TopLabel" type="Label" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=2105100073]
 layout_mode = 2
@@ -496,6 +493,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 18
 script = ExtResource("8_byewe")
 
 [node name="SettingContainer" type="HBoxContainer" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList" unique_id=1757760976]
@@ -521,8 +519,133 @@ texture_pressed = ExtResource("8_sjh0l")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="RoleSelectionButton" type="Button" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=27144238]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+text = "Roles"
+script = ExtResource("8_a8aa6")
+
 [node name="CancelButton" type="TextureButton" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=2144495981 node_paths=PackedStringArray("parent")]
+material = SubResource("ShaderMaterial_aobxe")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("6_3jcrr")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_a8aa6")
+parent = NodePath("../../../..")
+metadata/_custom_type_script = "uid://chihrg5my1873"
+
+[node name="RolePopUp" type="ColorRect" parent="BackgroundRect" unique_id=648766227 groups=["hidden"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.21176471, 0.22352941, 0.72156864)
+
+[node name="SettingsCenterContainer" type="CenterContainer" parent="BackgroundRect/RolePopUp" unique_id=1038663718]
 z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer" unique_id=87410944]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer" unique_id=1033492759]
+custom_minimum_size = Vector2(550, 900)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
+
+[node name="BgColorRect" type="ColorRect" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=2103995236]
+layout_mode = 2
+color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect" unique_id=1607379353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer" unique_id=592282443]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TopLabel" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=937991531]
+layout_mode = 2
+text = "Select Roles"
+label_settings = SubResource("LabelSettings_3jcrr")
+horizontal_alignment = 1
+
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1776648450]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=325348023]
+layout_mode = 2
+
+[node name="BaseSettingsList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer" unique_id=1522659101]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+script = ExtResource("8_byewe")
+
+[node name="SettingContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList" unique_id=1303294682]
+layout_mode = 2
+script = ExtResource("8_qki4b")
+
+[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=1577140263]
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role Name"
+label_settings = SubResource("LabelSettings_ab40c")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="InCheckBox" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=752420136]
+material = SubResource("ShaderMaterial_sjh0l")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("9_qki4b")
+texture_pressed = ExtResource("8_sjh0l")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="RoleSelectionButton" type="Button" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=16325023]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("1_6pedr")
+text = "Roles"
+script = ExtResource("8_a8aa6")
+
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=991840945 node_paths=PackedStringArray("parent")]
 material = SubResource("ShaderMaterial_aobxe")
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2

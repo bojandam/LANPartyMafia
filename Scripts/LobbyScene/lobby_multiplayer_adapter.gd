@@ -6,10 +6,9 @@ extends Node
 @onready var lobby_screen:Control = %LobbyVBoxContainer
 
 func _ready():
-	name_screen.show()
-	server_screen.hide()
-	lobby_screen.hide()
-
+	get_tree().call_group("hidden","hide")
+	get_tree().call_group("shown","show")
+	
 func _on_enter_name_pressed():
 	var inputed_text:String = %NameLineEdit.text
 	if not inputed_text:
