@@ -13,7 +13,7 @@ shader_parameter/replace_colors = PackedColorArray(0.17254902, 0.21176471, 0.223
 shader_parameter/tolerance = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_og453"]
-font_size = 24
+font_size = 30
 font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
 
 [node name="PlusMinusField" type="HBoxContainer" unique_id=2134059536]
@@ -28,7 +28,7 @@ script = ExtResource("1_og453")
 [node name="Minus" type="TextureButton" parent="." unique_id=1442158295]
 texture_filter = 1
 material = SubResource("ShaderMaterial_wcvae")
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("2_wcvae")
 ignore_texture_size = true
@@ -45,7 +45,7 @@ vertical_alignment = 1
 [node name="Plus" type="TextureButton" parent="." unique_id=1703066833]
 texture_filter = 1
 material = SubResource("ShaderMaterial_wcvae")
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("1_ixqrv")
 ignore_texture_size = true

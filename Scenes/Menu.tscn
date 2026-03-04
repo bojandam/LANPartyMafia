@@ -83,7 +83,7 @@ border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_3jcrr"]
-font_size = 33
+font_size = 45
 font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 shadow_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
@@ -106,7 +106,7 @@ shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.309
 shader_parameter/tolerance = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ab40c"]
-font_size = 24
+font_size = 30
 font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sjh0l"]
@@ -124,6 +124,10 @@ shadow_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsmso"]
 bg_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_krje8"]
+font_size = 30
+font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t8p2w"]
 font_size = 36
@@ -529,7 +533,7 @@ autowrap_mode = 3
 
 [node name="SettingCheckBox" type="TextureButton" parent="BackgroundRect/SettingsPopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/ScrollContainer/BaseSettingsList/SettingContainer" unique_id=1288175154]
 material = SubResource("ShaderMaterial_sjh0l")
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("9_qki4b")
@@ -568,7 +572,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.17254902, 0.21176471, 0.22352941, 0.72156864)
 
-[node name="SettingsCenterContainer" type="CenterContainer" parent="BackgroundRect/RolePopUp" unique_id=1038663718]
+[node name="SettingsCenterContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp" unique_id=27797964]
 z_index = 2
 layout_mode = 1
 anchors_preset = 15
@@ -576,20 +580,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer" unique_id=87410944]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer" unique_id=1033492759]
-custom_minimum_size = Vector2(550, 900)
+[node name="BorderPanel" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer" unique_id=1152185248]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ab40c")
 
-[node name="BgColorRect" type="ColorRect" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=2103995236]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer" unique_id=62020830]
+custom_minimum_size = Vector2(550, 900)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BgColorRect" type="ColorRect" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer" unique_id=2103995236]
 layout_mode = 2
 color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect" unique_id=1607379353]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect" unique_id=1607379353]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -601,17 +613,17 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer" unique_id=592282443]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer" unique_id=592282443]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="TopLabel" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=937991531]
+[node name="TopLabel" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=937991531]
 layout_mode = 2
 text = "Select Roles"
 label_settings = SubResource("LabelSettings_3jcrr")
 horizontal_alignment = 1
 
-[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1776648450]
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1776648450]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 15
@@ -619,18 +631,18 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=124730537]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=124730537]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2059900026]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2059900026]
 layout_mode = 2
 theme_override_constants/separation = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=2073698734]
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=2073698734]
 layout_mode = 2
 
-[node name="RoleName" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1189530137]
+[node name="RoleName" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1189530137]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -639,8 +651,8 @@ label_settings = SubResource("LabelSettings_dsmso")
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=144364769]
-custom_minimum_size = Vector2(120, 10)
+[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=144364769]
+custom_minimum_size = Vector2(125, 10)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Amount"
@@ -649,8 +661,8 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1100648994]
-custom_minimum_size = Vector2(130, 10)
+[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1100648994]
+custom_minimum_size = Vector2(140, 10)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Required"
@@ -659,44 +671,49 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=866488028]
+[node name="Panel" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=866488028]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dsmso")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=325348023]
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=325348023]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RoleSelectorList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer" unique_id=1522659101]
+[node name="RoleSelectorList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer" unique_id=1522659101]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 script = ExtResource("14_krje8")
 
-[node name="RoleContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList" unique_id=1303294682]
+[node name="RoleContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList" unique_id=1303294682]
 layout_mode = 2
 script = ExtResource("14_t8p2w")
+ColorDict = Dictionary[int, Color]({
+0: Color(0.165, 0.30525005, 0.33, 1),
+1: Color(0.45, 0.05414999, 0.04049999, 1),
+2: Color(0, 0.37, 0.117166646, 1)
+})
 
-[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1577140263]
+[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1577140263]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Role Name"
-label_settings = SubResource("LabelSettings_ab40c")
+label_settings = SubResource("LabelSettings_krje8")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Ammount" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=2134059536 instance=ExtResource("14_dsmso")]
+[node name="Ammount" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=2134059536 instance=ExtResource("14_dsmso")]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Required" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1231747915 instance=ExtResource("14_dsmso")]
+[node name="Required" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1231747915 instance=ExtResource("14_dsmso")]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=572361618]
+[node name="Label" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=572361618]
 layout_mode = 2
 theme = ExtResource("1_x0ao6")
 text = "10/16 Roles selected"
@@ -704,10 +721,13 @@ label_settings = SubResource("LabelSettings_t8p2w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/VBoxContainer/PanelContainer" unique_id=991840945 node_paths=PackedStringArray("parent")]
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect" unique_id=991840945 node_paths=PackedStringArray("parent")]
 material = SubResource("ShaderMaterial_aobxe")
 custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
+layout_mode = 0
+offset_left = 544.0
+offset_right = 604.0
+offset_bottom = 60.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture_normal = ExtResource("6_3jcrr")

@@ -2,10 +2,14 @@ extends HBoxContainer
 class_name RoleSettingContainer
 
 @export var role:RoleController.Roles
+@export var ColorDict:Dictionary[RoleController.Teams,Color]
+
+var label_settings:LabelSettings
 
 @onready var ammount_field:PlusMinusField = $Ammount
 @onready var required_field:PlusMinusField = $Required
 @onready var role_info:Dictionary = RoleController.role_info[role]
+@onready var label:Label = $RoleText
 
 func _get_info(key,def):
 	return role_info[key] if role_info.has(key) else def
@@ -39,7 +43,10 @@ func _ready():
 	
 	required_field.plus.button_down.disconnect(required_field.increment)
 	required_field.plus.button_down.connect(_increment_required)
-	$RoleText.text = str(RoleController.Roles.keys()[role])
-	pass # Replace with function body.
-
+	
+	
+	label.text = str(RoleController.Roles.keys()[role])
+	if label_settings:
+		label.label_settings = label_settings
+		label.label_settings.font_color = ColorDict[role_info["team"]] 
  
