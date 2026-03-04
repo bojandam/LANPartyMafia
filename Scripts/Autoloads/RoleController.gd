@@ -21,6 +21,17 @@ enum Roles{
 	Informant,
 	Maniac,
 }
+const role_order:Array[Roles] = [
+	Roles.Informant,
+	Roles.Beauty,
+	Roles.Bodyguard,
+	Roles.Doctor,
+	Roles.Mafia,
+	Roles.Sherif,
+	Roles.Detective,
+	Roles.Boss,
+	Roles.Maniac,
+	]
 
 var role_info:Dictionary[Roles,Dictionary] =  {
 	Roles.Villager:{"team":Teams.Village,},

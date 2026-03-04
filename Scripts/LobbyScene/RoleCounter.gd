@@ -21,11 +21,16 @@ func _adjust_required():
 	while not required_field.max_check.call(required_field.value):
 		required_field.decrement()
 
+func _required_max_check(val):
+	return val <= min(ammount_field.value, PlayersManager.get_player_count())  
+	
 func _ready():
+	ammount_field.value_changed.connect(func(): role_info["ammount"]=ammount_field.value)
+	required_field.value_changed.connect(func(): role_info["required"]=required_field.value)
+	
 	ammount_field.min_check = _range_check_ammount
 	ammount_field.max_check = _range_check_ammount
-	required_field.max_check = func(v): return v<= min(ammount_field.value, PlayersManager.get_player_count()) 
-	ammount_field.value= _get_info("default",0)
+	required_field.max_check = _required_max_check
 	
 	PlayersManager.player_list_changed.connect(ammount_field.check_availability)
 	PlayersManager.player_list_changed.connect(required_field.check_availability)
@@ -33,6 +38,9 @@ func _ready():
 	
 	PlayersManager.player_list_changed.connect(_adjust_required)
 	ammount_field.decremented.connect(_adjust_required)
+	
+	ammount_field.value = _get_info("default",0)
+	required_field.value = _get_info("default required",0)
 	
 	ammount_field.check_availability()
 	required_field.check_availability()

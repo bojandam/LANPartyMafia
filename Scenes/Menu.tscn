@@ -9,15 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://cgrpxlqkp3rpk" path="res://Icons/Settings.png" id="4_aobxe"]
 [ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
-[ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/lobby_multiplayer_controller.gd" id="6_idohh"]
+[ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/LobbyScene/lobby_multiplayer_controller.gd" id="6_idohh"]
 [ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scripts/VisisbilityButtonHandler.gd" id="8_a8aa6"]
 [ext_resource type="Script" uid="uid://cs15cfmasckts" path="res://Scripts/base_settings_list.gd" id="8_byewe"]
 [ext_resource type="Script" uid="uid://c1ohgifsr6als" path="res://Scripts/LobbyScene/setting_container.gd" id="8_qki4b"]
 [ext_resource type="Texture2D" uid="uid://bdhny7ghkxvl6" path="res://Icons/check-square (1).svg" id="8_sjh0l"]
 [ext_resource type="Texture2D" uid="uid://ctaet54xrqmur" path="res://Icons/square (1).svg" id="9_qki4b"]
 [ext_resource type="PackedScene" uid="uid://c5xc7htbhv1m6" path="res://Scenes/PlusMinusInput.tscn" id="14_dsmso"]
-[ext_resource type="Script" uid="uid://dy2x56bkdyl22" path="res://Scenes/role_selector_list.gd" id="14_krje8"]
-[ext_resource type="Script" uid="uid://8r27wdfy53fx" path="res://Scenes/RoleCounter.gd" id="14_t8p2w"]
+[ext_resource type="Script" uid="uid://dy2x56bkdyl22" path="res://Scripts/LobbyScene/role_selector_list.gd" id="14_krje8"]
+[ext_resource type="Script" uid="uid://8r27wdfy53fx" path="res://Scripts/LobbyScene/RoleCounter.gd" id="14_t8p2w"]
+[ext_resource type="Script" uid="uid://bbtw2re2t5oe8" path="res://Scripts/LobbyScene/SumPlusMinus.gd" id="17_dd46u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")
@@ -72,6 +73,10 @@ border_blend = true
 [sub_resource type="LabelSettings" id="LabelSettings_wfhf6"]
 font_size = 45
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3nbb"]
+font_size = 45
+font_color = Color(0.40185556, 0.026108164, 0.01741154, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab40c"]
 bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
@@ -128,6 +133,12 @@ bg_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_krje8"]
 font_size = 30
 font_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dd46u"]
+font_size = 30
+font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
+shadow_size = 0
+shadow_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t8p2w"]
 font_size = 36
@@ -358,9 +369,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=2044226493]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=363349337]
+layout_mode = 2
+
+[node name="StartWarning" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer" unique_id=554240783]
 unique_name_in_owner = true
-visible = false
+layout_mode = 2
+text = "Set the Roles"
+label_settings = SubResource("LabelSettings_n3nbb")
+horizontal_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer" unique_id=2044226493]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 36
@@ -449,6 +469,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="SettingsPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1628681435 groups=["hidden"]]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -564,6 +585,7 @@ parent = NodePath("../../../..")
 metadata/_custom_type_script = "uid://chihrg5my1873"
 
 [node name="RolePopUp" type="ColorRect" parent="BackgroundRect" unique_id=648766227 groups=["hidden"]]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -611,11 +633,11 @@ grow_vertical = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer" unique_id=592282443]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 
 [node name="TopLabel" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=937991531]
 layout_mode = 2
@@ -623,26 +645,29 @@ text = "Select Roles"
 label_settings = SubResource("LabelSettings_3jcrr")
 horizontal_alignment = 1
 
-[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1776648450]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=1981798042]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MiddleMarginContainer" type="MarginContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1776648450]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer" unique_id=124730537]
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer" unique_id=124730537]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2059900026]
+[node name="TopText" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2059900026]
 layout_mode = 2
 theme_override_constants/separation = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=2073698734]
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TopText" unique_id=2073698734]
 layout_mode = 2
 
-[node name="RoleName" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1189530137]
+[node name="RoleName" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TopText/HBoxContainer" unique_id=1189530137]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -651,7 +676,7 @@ label_settings = SubResource("LabelSettings_dsmso")
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=144364769]
+[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TopText/HBoxContainer" unique_id=144364769]
 custom_minimum_size = Vector2(125, 10)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -661,7 +686,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1100648994]
+[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TopText/HBoxContainer" unique_id=1100648994]
 custom_minimum_size = Vector2(140, 10)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -671,23 +696,23 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Panel" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/VBoxContainer" unique_id=866488028]
+[node name="Line" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TopText" unique_id=866488028]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dsmso")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=325348023]
+[node name="ScrollContainer" type="ScrollContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=325348023]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RoleSelectorList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer" unique_id=1522659101]
+[node name="RoleSelectorList" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer" unique_id=1522659101]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 script = ExtResource("14_krje8")
 
-[node name="RoleContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList" unique_id=1303294682]
+[node name="RoleContainer" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList" unique_id=1303294682]
 layout_mode = 2
 script = ExtResource("14_t8p2w")
 ColorDict = Dictionary[int, Color]({
@@ -696,7 +721,7 @@ ColorDict = Dictionary[int, Color]({
 2: Color(0, 0.37, 0.117166646, 1)
 })
 
-[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1577140263]
+[node name="RoleText" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1577140263]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -705,36 +730,80 @@ label_settings = SubResource("LabelSettings_krje8")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Ammount" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=2134059536 instance=ExtResource("14_dsmso")]
+[node name="Ammount" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=2134059536 instance=ExtResource("14_dsmso")]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Required" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1231747915 instance=ExtResource("14_dsmso")]
+[node name="Required" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/ScrollContainer/RoleSelectorList/RoleContainer" unique_id=1231747915 instance=ExtResource("14_dsmso")]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer" unique_id=572361618]
+[node name="TotalText" type="VBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer" unique_id=2092070861]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Line" type="Panel" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TotalText" unique_id=1294090453]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsmso")
+
+[node name="TotalLine" type="HBoxContainer" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TotalText" unique_id=2113840617 node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("17_dd46u")
+List = NodePath("../../ScrollContainer/RoleSelectorList")
+
+[node name="Total" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TotalText/TotalLine" unique_id=443277518]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Total:"
+label_settings = SubResource("LabelSettings_dd46u")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Amount" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TotalText/TotalLine" unique_id=17900951]
+custom_minimum_size = Vector2(125, 10)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "35"
+label_settings = SubResource("LabelSettings_dd46u")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Required" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer/MiddleMarginContainer/VBoxContainer/TotalText/TotalLine" unique_id=10410400]
+custom_minimum_size = Vector2(140, 10)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "15"
+label_settings = SubResource("LabelSettings_dd46u")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="RoleCountWarning" type="Label" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=572361618]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 110)
 layout_mode = 2
 theme = ExtResource("1_x0ao6")
-text = "10/16 Roles selected"
+text = "You can start the game now : )"
 label_settings = SubResource("LabelSettings_t8p2w")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer/BgColorRect" unique_id=991840945 node_paths=PackedStringArray("parent")]
+[node name="CancelButton" type="TextureButton" parent="BackgroundRect/RolePopUp/SettingsCenterContainer/MarginContainer" unique_id=991840945 node_paths=PackedStringArray("parent")]
 material = SubResource("ShaderMaterial_aobxe")
 custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_left = 544.0
-offset_right = 604.0
-offset_bottom = 60.0
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture_normal = ExtResource("6_3jcrr")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("8_a8aa6")
-parent = NodePath("../../../..")
+parent = NodePath("../../..")
 metadata/_custom_type_script = "uid://chihrg5my1873"
 
 [node name="LocalMultiplayerAdapter" type="Node" parent="." unique_id=941465868]
@@ -747,4 +816,4 @@ script = ExtResource("6_idohh")
 [connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerAdapter" method="_on_enter_name_pressed"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerAdapter" method="_on_join_button_button_down"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox/HostButton" to="LocalMultiplayerAdapter" method="_on_host_button_button_down"]
-[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]
+[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]
