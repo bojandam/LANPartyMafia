@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://ddmdl4snkxkm7" path="res://Icons/plus-square-solid.svg" id="1_ixqrv"]
 [ext_resource type="Script" uid="uid://drdfyvsfm386h" path="res://Scripts/plus_minus_field.gd" id="1_og453"]
 [ext_resource type="Texture2D" uid="uid://1a0vuhiyg5f7" path="res://Icons/minus-square-solid.svg" id="2_wcvae"]
+[ext_resource type="Texture2D" uid="uid://cry8o7745txdn" path="res://Icons/minus-square-solid-disabled.svg" id="4_ekiek"]
+[ext_resource type="Texture2D" uid="uid://cyfw8udsih5w5" path="res://Icons/plus-square-solid-disabled.svg" id="6_06vd1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wcvae"]
 shader = ExtResource("1_emxqx")
-shader_parameter/colorCount = 1
-shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
-shader_parameter/replace_colors = PackedColorArray(0.17254902, 0.21176471, 0.22352941, 1)
-shader_parameter/tolerance = 0.0
+shader_parameter/colorCount = 2
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1, 0.6666667, 0.6666667, 0.6666667, 1)
+shader_parameter/replace_colors = PackedColorArray(0.17254902, 0.21176471, 0.22352941, 1, 0.44, 0.42944, 0.40039998, 1)
+shader_parameter/tolerance = 0.10000000475
 
 [sub_resource type="LabelSettings" id="LabelSettings_og453"]
 font_size = 30
@@ -31,6 +33,7 @@ material = SubResource("ShaderMaterial_wcvae")
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("2_wcvae")
+texture_disabled = ExtResource("4_ekiek")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -48,5 +51,6 @@ material = SubResource("ShaderMaterial_wcvae")
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("1_ixqrv")
+texture_disabled = ExtResource("6_06vd1")
 ignore_texture_size = true
 stretch_mode = 5

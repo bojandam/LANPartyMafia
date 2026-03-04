@@ -24,7 +24,7 @@ enum Roles{
 
 var role_info:Dictionary[Roles,Dictionary] =  {
 	Roles.Villager:{"team":Teams.Village,},
-	Roles.Doctor:{"team":Teams.Village,"default":1},
+	Roles.Doctor:{"team":Teams.Village,"default":1,},
 	Roles.Beauty:{"team":Teams.Village,"default":1},
 	Roles.Sherif:{"team":Teams.Village,},
 	Roles.Sergant:{"team":Teams.Village,"max":1,},
@@ -33,7 +33,7 @@ var role_info:Dictionary[Roles,Dictionary] =  {
 	Roles.Undying:{"team":Teams.Village,},
 	Roles.Sleepwalker:{"team":Teams.Village,},
 	Roles.Werewolf:{"team":Teams.Village,},
-	Roles.Mafia:{"team":Teams.Mafia,"default":1},
+	Roles.Mafia:{"team":Teams.Mafia,"default":1,"default required":1},
 	Roles.Boss:{"team":Teams.Mafia,},
 	Roles.Informant:{"team":Teams.Mafia,},
 	Roles.Maniac:{"team":Teams.Maniac,"max":1,},

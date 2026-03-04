@@ -15,35 +15,27 @@ func _get_info(key,def):
 	return role_info[key] if role_info.has(key) else def
 
 func _range_check_ammount(value:int):
-	return _get_info("min",0)<=value and value<= _get_info("max",PlayersManager.get_player_count()) 
+	return _get_info("min",0)<=value and (value<= role_info["max"] if role_info.has("max") else true) 
 
-func _increment_ammount():
-	if _range_check_ammount(ammount_field.value+1):
-		ammount_field.value+=1
-		ammount_field.incremented.emit()
+func _adjust_required():
+	while not required_field.max_check.call(required_field.value):
+		required_field.decrement()
 
-func _decrement_ammount():
-	if _range_check_ammount(ammount_field.value-1):
-		ammount_field.value-=1
-		ammount_field.decremented.emit()
-
-func _increment_required():
-	if required_field.value+1 <= ammount_field.value:
-		required_field.value+=1
-		required_field.incremented.emit()
-		
 func _ready():
-	ammount_field.plus.button_down.disconnect(ammount_field.increment)
-	ammount_field.minus.button_down.disconnect(ammount_field.decrement)
-	
-	ammount_field.plus.button_down.connect(_increment_ammount)
-	ammount_field.minus.button_down.connect(_decrement_ammount)	
-	
+	ammount_field.min_check = _range_check_ammount
+	ammount_field.max_check = _range_check_ammount
+	required_field.max_check = func(v): return v<= min(ammount_field.value, PlayersManager.get_player_count()) 
 	ammount_field.value= _get_info("default",0)
 	
-	required_field.plus.button_down.disconnect(required_field.increment)
-	required_field.plus.button_down.connect(_increment_required)
+	PlayersManager.player_list_changed.connect(ammount_field.check_availability)
+	PlayersManager.player_list_changed.connect(required_field.check_availability)
+	ammount_field.value_changed.connect(required_field.check_availability)
 	
+	PlayersManager.player_list_changed.connect(_adjust_required)
+	ammount_field.decremented.connect(_adjust_required)
+	
+	ammount_field.check_availability()
+	required_field.check_availability()
 	
 	label.text = str(RoleController.Roles.keys()[role])
 	if label_settings:
