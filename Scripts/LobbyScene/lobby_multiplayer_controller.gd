@@ -45,14 +45,21 @@ func join_game(ip:String):
 func _on_connected_to_server():
 	ConnectionManager.player_info["id"]=multiplayer.get_unique_id()
 	await get_tree().create_timer(.2).timeout
-	_send_player_information.rpc(ConnectionManager.player_info)
+	_send_player_information.rpc_id(1,ConnectionManager.player_info)
 
 @rpc("any_peer")
 func _send_player_information(player_info:Dictionary):
 	if player_info["id"] not in PlayersManager.get_players().keys():
+		var correction:int = 0
+		var old_name:String = player_info["name"]
+		while player_info["name"] in PlayersManager.get_players_by_name().keys():
+			correction+=1
+			player_info["name"] = old_name + " " +str(correction)
+		if correction and multiplayer.is_server():
+			%LocalMultiplayerAdapter.correct_name.rpc_id(player_info["id"],player_info["name"])
 		PlayersManager.add_player(player_info)
 	if multiplayer.is_server() and player_info["id"]!=1:
-		_send_server_player_dict.rpc_id(player_info["id"],PlayersManager.get_players())
+		_send_server_player_dict.rpc(PlayersManager.get_players())
 
 @rpc("authority")
 func _send_server_player_dict(player_dict):

@@ -2,7 +2,8 @@ extends Node
 
 
 func _ready():
-	_assign_roles()
+	if multiplayer.is_server():
+		_assign_roles()
 
 func _assign_roles():
 	var roles_selected:Array[RoleController.Roles]
@@ -23,4 +24,6 @@ func _assign_roles():
 	for player:Dictionary in PlayersManager.get_players().values():
 		var role:RoleController.Roles = roles_selected.pop_front()
 		player["role"] = role
+		if not RoleController.role_tracker.has(role):
+			RoleController.role_tracker[role] = []
 		RoleController.role_tracker[role].push_back(player["name"])

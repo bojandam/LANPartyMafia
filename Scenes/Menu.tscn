@@ -356,6 +356,8 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("5_wfhf6")
+player_color = Color(0.1736, 0.56, 0.34748003, 0.47058824)
+server_color = Color(0.71, 0.54906666, 0.14199999, 0.47058824)
 metadata/_custom_type_script = "uid://cn2ixqtrn4hdb"
 
 [node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
@@ -369,17 +371,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=363349337]
+[node name="StartSection" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox" unique_id=363349337 groups=["hidden"]]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="StartWarning" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer" unique_id=554240783]
+[node name="StartWarning" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/StartSection" unique_id=554240783]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Set the Roles"
 label_settings = SubResource("LabelSettings_n3nbb")
 horizontal_alignment = 1
 
-[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer" unique_id=2044226493]
+[node name="StartGameButton" type="Button" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/StartSection" unique_id=2044226493]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -807,6 +810,7 @@ parent = NodePath("../../..")
 metadata/_custom_type_script = "uid://chihrg5my1873"
 
 [node name="LocalMultiplayerAdapter" type="Node" parent="." unique_id=941465868]
+unique_name_in_owner = true
 script = ExtResource("1_3kf3n")
 
 [node name="MultiplayerController" type="Node" parent="." unique_id=1875057474]
@@ -816,4 +820,4 @@ script = ExtResource("6_idohh")
 [connection signal="pressed" from="BackgroundRect/MainMarginContainer/NameVBoxContainer/InputVBoxContainer/EnterName" to="LocalMultiplayerAdapter" method="_on_enter_name_pressed"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/ServerListVBox/JoinButton" to="LocalMultiplayerAdapter" method="_on_join_button_button_down"]
 [connection signal="button_down" from="BackgroundRect/MainMarginContainer/JoinVBoxContainer/CreateRoomVBox/HostButton" to="LocalMultiplayerAdapter" method="_on_host_button_button_down"]
-[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/VBoxContainer/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]
+[connection signal="button_up" from="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/StartSection/StartGameButton" to="LocalMultiplayerAdapter" method="_on_start_game_button_button_up"]

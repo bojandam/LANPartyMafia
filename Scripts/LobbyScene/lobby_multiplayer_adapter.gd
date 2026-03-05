@@ -21,7 +21,10 @@ func _on_enter_name_pressed():
 	
 	UniversalUndoManager.add_action(func(): name_screen.show();server_screen.hide())
 
-
+@rpc("authority")
+func correct_name(new_name:String):
+	ConnectionManager.player_info["name"] = new_name
+	
 func _on_host_button_button_down():
 	var error = MultiplayerController.host_game()
 	if error == OK:
@@ -41,14 +44,14 @@ func _after_connection_work():
 	lobby_screen.show()
 	if multiplayer.is_server():
 		%StartGameButton.show()
-		%SettingsButton.show()
+		%StartSection.show()
 	print("You need to add role selection")
 	UniversalUndoManager.add_action(
 		func():
 			MultiplayerController.disconnect_player()
 			lobby_screen.hide()
 			%JoinVBoxContainer.show()
-			%StartGameButton.hide()
+			%StartSection.hide()
 			%SettingsButton.hide()
 			)
 
