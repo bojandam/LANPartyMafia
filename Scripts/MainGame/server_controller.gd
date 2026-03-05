@@ -21,4 +21,6 @@ func _assign_roles():
 		roles_selected.append(selection_range.pop_front())
 	roles_selected.shuffle()
 	for player:Dictionary in PlayersManager.get_players().values():
-		player["role"] = roles_selected.pop_front()
+		var role:RoleController.Roles = roles_selected.pop_front()
+		player["role"] = role
+		RoleController.role_tracker[role].push_back(player["name"])

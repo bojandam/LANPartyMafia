@@ -32,7 +32,7 @@ const role_order:Array[Roles] = [
 	Roles.Boss,
 	Roles.Maniac,
 	]
-
+var role_tracker:Dictionary[Roles,Array] = {}
 var role_info:Dictionary[Roles,Dictionary] =  {
 	Roles.Villager:{"team":Teams.Village,},
 	Roles.Doctor:{"team":Teams.Village,"default":1,},
