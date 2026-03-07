@@ -45,6 +45,7 @@ func _after_connection_work():
 	if multiplayer.is_server():
 		%StartGameButton.show()
 		%StartSection.show()
+		%SettingsButton.show()
 	print("You need to add role selection")
 	UniversalUndoManager.add_action(
 		func():
