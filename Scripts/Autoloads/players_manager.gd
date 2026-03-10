@@ -33,6 +33,9 @@ func clear_players():
 	player_list_set.emit(_players)
 	player_list_changed.emit()
 
+func get_player_id(name:String):
+	return _players_by_name[name]["id"]
+
 func get_players()->Dictionary[int,Dictionary]:
 	return _players
 

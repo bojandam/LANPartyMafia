@@ -1,0 +1,80 @@
+extends Node
+
+enum State{Day,Night}
+enum Effects{Rumored, Disabled, Defended, Healed}
+
+var _first_daynight: bool = true
+var _effect_tracker:Dictionary[String,Array] # Name -> Array[Effects]
+var alive_list: Array[String] = []
+@rpc("any_peer")
+func _add_effect_to_player(effects:Array[Effects], player:String):
+	if multiplayer.is_server():
+		if not _effect_tracker.has(player):
+			_effect_tracker[player] =[]
+		_effect_tracker[player].append_array(effects)
+
+@rpc("authority","call_local")
+func select_player_for_effect(player_list:Array[String],effects:Array[Effects]):
+	#Player_selection_screen.genarate(), .show()
+	#await select player button 
+	pass
+
+func has_effect(player:String, effect:Effects):
+	return _effect_tracker.has(player) and _effect_tracker[player].has(effect)
+
+func run_Night():
+	_effect_tracker.clear()
+	
+	if _first_daynight:
+		_first_daynight = false
+		pass #to do: first night stuff
+	
+	for role:RoleController.Roles in RoleController.role_order:
+		var players:Array[String] = RoleController.role_tracker[role]
+		if players.is_empty():
+			continue
+		match role:
+			RoleController.Roles.Beauty:
+				for player in players:
+					select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
+						alive_list,
+						[Effects.Disabled,Effects.Healed] if ConnectionManager.game_settings.get_flag(Settings.Flags.Ubavica_heals) else [Effects.Disabled]
+						)
+			RoleController.Roles.Informant:
+				for player in players:
+					select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
+						alive_list,
+						[Effects.Rumored])
+			RoleController.Roles.Bodyguard:
+				select_player_for_effect.rpc_id(PlayersManager.get_player_id(players[0]),
+						alive_list,
+						[Effects.Defended])
+			RoleController.Roles.Mafia:
+				#MultiPlayerSelect(players)
+				#SpyVisual(Sleepwalker)
+				#Kill(selected)
+				pass
+			RoleController.Roles.Sherif:
+				#SherifScreen
+				#SpyVisual(Nacalnik)
+				pass
+			RoleController.Roles.Detective:
+				#select_player_for_action(player_list,discover_team)
+				pass
+			RoleController.Roles.Boss:
+				#select_player_for_action(plaer_list,find_role)
+				pass
+			RoleController.Roles.Maniac:
+				#select_player_for_action(player_lsit,kill)
+				pass
+		#to do: Rest of Night
+		pass
+						
+						
+						
+						
+						
+						
+						
+						
+						 

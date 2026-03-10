@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://yr3sgyv7iw33"]
 
 [ext_resource type="Script" uid="uid://wfxobcsajp0f" path="res://Scripts/MainGame/main_multiplayer_controler.gd" id="1_frf35"]
+[ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_ybmw1"]
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 [ext_resource type="Script" uid="uid://bg35lhuo83j3w" path="res://Scripts/MainGame/server_controller.gd" id="3_yprpe"]
+[ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mh0ok"]
 font_size = 35
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_321ql"]
+font_size = 36
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
 [node name="RootControl" type="Control" unique_id=1294606147]
@@ -15,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ybmw1")
 
 [node name="BackgroundRect" type="ColorRect" parent="." unique_id=704240495]
 layout_mode = 1
@@ -71,6 +78,17 @@ theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 150
 
+[node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576]
+layout_mode = 2
+
+[node name="WaitForTurn" type="Label" parent="BackgroundRect/MainMarginContainer/NightWait" unique_id=336150436]
+layout_mode = 2
+text = "Wait for your turn.
+(Act like you're doing something)"
+label_settings = SubResource("LabelSettings_321ql")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
 unique_name_in_owner = true
 script = ExtResource("1_frf35")
@@ -83,3 +101,6 @@ script = ExtResource("2_frf35")
 
 [node name="ServerController" type="Node" parent="." unique_id=1877163961]
 script = ExtResource("3_yprpe")
+
+[node name="DayNightController" type="Node" parent="." unique_id=498592148]
+script = ExtResource("5_321ql")

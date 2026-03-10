@@ -1,6 +1,5 @@
 extends Node
 
-enum Effects{Rumored, Disabled, Defended, Healed}
 enum Teams{Village,Mafia,Maniac}
 
 	
