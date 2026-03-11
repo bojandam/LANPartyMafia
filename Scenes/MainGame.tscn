@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wfxobcsajp0f" path="res://Scripts/MainGame/main_multiplayer_controler.gd" id="1_frf35"]
 [ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_ybmw1"]
+[ext_resource type="Script" uid="uid://duqx4r87up60u" path="res://Scripts/MainGame/select_effected_player_list.gd" id="2_d4f28"]
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 [ext_resource type="Script" uid="uid://bg35lhuo83j3w" path="res://Scripts/MainGame/server_controller.gd" id="3_yprpe"]
 [ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
@@ -13,6 +14,41 @@ font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_321ql"]
 font_size = 36
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_321ql"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 6
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iuea6"]
+font_size = 44
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d4f28"]
+font_size = 50
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+shadow_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4f28"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuea6"]
+bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_iuea6"]
+allow_unpress = true
 
 [node name="RootControl" type="Control" unique_id=1294606147]
 layout_mode = 3
@@ -79,6 +115,7 @@ theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 150
 
 [node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576]
+visible = false
 layout_mode = 2
 
 [node name="WaitForTurn" type="Label" parent="BackgroundRect/MainMarginContainer/NightWait" unique_id=336150436]
@@ -88,6 +125,50 @@ text = "Wait for your turn.
 label_settings = SubResource("LabelSettings_321ql")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EffectSelecter" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/MainMarginContainer/EffectSelecter" unique_id=441300253]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_321ql")
+
+[node name="TopText" type="HBoxContainer" parent="BackgroundRect/MainMarginContainer/EffectSelecter/PanelContainer" unique_id=1078962077]
+layout_mode = 2
+
+[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/EffectSelecter/PanelContainer/TopText" unique_id=1476056262]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select who to:"
+label_settings = SubResource("LabelSettings_iuea6")
+vertical_alignment = 1
+
+[node name="EffectText" type="Label" parent="BackgroundRect/MainMarginContainer/EffectSelecter/PanelContainer/TopText" unique_id=569378782]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Disable"
+label_settings = SubResource("LabelSettings_d4f28")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelecter" unique_id=468703840]
+layout_mode = 2
+columns = 2
+script = ExtResource("2_d4f28")
+metadata/_custom_type_script = "uid://7uswub3ti1n3"
+
+[node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelecter/NameList" unique_id=1474166345]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_d4f28")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iuea6")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_iuea6")
+text = "Name"
 
 [node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
 unique_name_in_owner = true

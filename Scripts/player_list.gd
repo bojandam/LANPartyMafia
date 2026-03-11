@@ -13,8 +13,8 @@ func _ready():
 
 func add_name(player_info:Dictionary, base_node:Node): #Abstracted
 	var new_item:= base_node.duplicate() 
-	new_item.text = player_info["name"] #get_text		Ok
-	new_item.name = str(player_info["id"]) #get_id		Ok
+	new_item.text = player_info["name"] 
+	new_item.name = player_info["name"] 
 	#print(new_item.name)
 	new_item.show()
 	add_child(new_item)
@@ -29,9 +29,9 @@ func remove_name(id:int):
 			name_removed.emit()
 			return
 
-func refresh(player_list:Dictionary[int,Dictionary]):
+func refresh(player_list:Array[Dictionary]):
 	for child:Node in get_children():
 		child.queue_free()
-	for player_info:Dictionary in player_list.values():
+	for player_info:Dictionary in player_list:
 		add_name(player_info,_base_children[0])
 	refreshed.emit()

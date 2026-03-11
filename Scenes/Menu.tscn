@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_x0ao6"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
 [ext_resource type="Texture2D" uid="uid://cgrpxlqkp3rpk" path="res://Icons/Settings.png" id="4_aobxe"]
-[ext_resource type="Script" uid="uid://7uswub3ti1n3" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
+[ext_resource type="Script" uid="uid://b8swlp0yv80cg" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/LobbyScene/lobby_multiplayer_controller.gd" id="6_idohh"]
 [ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scripts/VisisbilityButtonHandler.gd" id="8_a8aa6"]
@@ -356,8 +356,8 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("5_wfhf6")
-player_color = Color(0.1736, 0.56, 0.34748003, 0.47058824)
-server_color = Color(0.71, 0.54906666, 0.14199999, 0.47058824)
+player_color = Color(0.17254902, 0.56078434, 0.34901962, 0.47058824)
+server_color = Color(0.70980394, 0.54901963, 0.14117648, 0.47058824)
 metadata/_custom_type_script = "uid://cn2ixqtrn4hdb"
 
 [node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
