@@ -1,6 +1,9 @@
 extends NameList
 
 signal selection_changed(button:BaseButton)
+
+@export var styles:Dictionary[String,StyleBox]
+
 var selection:String = ""
 var _button_group:ButtonGroup
 

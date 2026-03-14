@@ -35,7 +35,7 @@ border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuea6"]
@@ -44,7 +44,7 @@ border_width_left = 15
 border_width_top = 15
 border_width_right = 15
 border_width_bottom = 15
-border_color = Color(0.173, 0.561, 0.349, 0.471)
+border_color = Color(0.1736, 0.56, 0.34748003, 1)
 border_blend = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_iuea6"]
@@ -167,6 +167,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_d4f28")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iuea6")
 toggle_mode = true
+button_pressed = true
 button_group = SubResource("ButtonGroup_iuea6")
 text = "Name"
 
