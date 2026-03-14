@@ -11,6 +11,7 @@ void fragment() {
     	float dist = distance(tex_color.rgb, target_colors[i].rgb);
 	    if (dist <= tolerance) {
 	        tex_color.rgb = replace_colors[i].rgb;
+			tex_color.a = replace_colors[i].a;
 	    }
 	}
  

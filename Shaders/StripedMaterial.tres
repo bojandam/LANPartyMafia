@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bomo52415aalh"]
+
+[ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_8ym6a"]
+
+[resource]
+shader = ExtResource("1_8ym6a")
+shader_parameter/colorCount = 4
+shader_parameter/target_colors = PackedColorArray(0.9764706, 0.96862745, 0.972549, 1, 0, 0, 0, 1, 0.5568628, 0.5568628, 0.5568628, 1, 0.2901961, 0.2901961, 0.2901961, 1)
+shader_parameter/replace_colors = PackedColorArray(0.173, 0.561, 0.349, 0.471, 0, 0, 0, 0, 0.173, 0.561, 0.349, 0.471, 0.173, 0.561, 0.349, 0.471)
+shader_parameter/tolerance = 0.382000018145
