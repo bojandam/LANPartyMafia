@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wfxobcsajp0f" path="res://Scripts/MainGame/main_multiplayer_controler.gd" id="1_frf35"]
 [ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_ybmw1"]
-[ext_resource type="Script" uid="uid://duqx4r87up60u" path="res://Scripts/MainGame/select_effected_player_list.gd" id="2_d4f28"]
+[ext_resource type="Script" uid="uid://p6draq5b76kf" path="res://Scripts/NameLists/base_select_name_list.gd" id="2_d4f28"]
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 [ext_resource type="Script" uid="uid://bg35lhuo83j3w" path="res://Scripts/MainGame/server_controller.gd" id="3_yprpe"]
 [ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
@@ -29,6 +29,24 @@ font_size = 50
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 shadow_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvfik"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bmkb"]
+bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4f28"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 10
@@ -44,7 +62,7 @@ border_width_left = 15
 border_width_top = 15
 border_width_right = 15
 border_width_bottom = 15
-border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_iuea6"]
@@ -128,6 +146,7 @@ vertical_alignment = 1
 
 [node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=441300253]
 layout_mode = 2
@@ -158,6 +177,14 @@ vertical_alignment = 1
 layout_mode = 2
 columns = 2
 script = ExtResource("2_d4f28")
+styleboxes = Dictionary[String, StyleBox]({
+"isPlayerNormal": SubResource("StyleBoxFlat_kvfik"),
+"isPlayerPressed": SubResource("StyleBoxFlat_3bmkb")
+})
+style_paths = Dictionary[String, String]({
+"isPlayerNormal": "normal",
+"isPlayerPressed": "pressed"
+})
 metadata/_custom_type_script = "uid://7uswub3ti1n3"
 
 [node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector/NameList" unique_id=1474166345]
@@ -167,7 +194,6 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_d4f28")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iuea6")
 toggle_mode = true
-button_pressed = true
 button_group = SubResource("ButtonGroup_iuea6")
 text = "Name"
 

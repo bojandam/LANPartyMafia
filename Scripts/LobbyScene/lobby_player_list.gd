@@ -1,4 +1,4 @@
-extends ColouredNameList
+extends ColouredNameListA
 
 
 func _ready() -> void:

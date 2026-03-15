@@ -1,5 +1,5 @@
 extends NameList
-class_name ColouredNameList
+class_name ColouredNameListA
 
 @export var player_color:Color =Color(0.173, 0.561, 0.349, 0.471)
 @export var server_color:Color =Color(0.71, 0.549, 0.141, 0.471)
