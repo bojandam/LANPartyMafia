@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-uniform int colorCount; 
+uniform int colorCount;
+uniform bool change_alpha = true;
 uniform vec4 target_colors[10] : source_color;
 uniform vec4 replace_colors[10] : source_color; 
 uniform float tolerance : hint_range(0, 1); 
@@ -11,7 +12,8 @@ void fragment() {
     	float dist = distance(tex_color.rgb, target_colors[i].rgb);
 	    if (dist <= tolerance) {
 	        tex_color.rgb = replace_colors[i].rgb;
-			tex_color.a = replace_colors[i].a;
+			if(change_alpha)
+				tex_color.a = replace_colors[i].a;
 	    }
 	}
  

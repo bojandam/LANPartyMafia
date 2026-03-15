@@ -23,6 +23,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2c3o"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
+shader_parameter/change_alpha = true
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.63529414, 0.48235294, 0.36078432, 1)
 shader_parameter/tolerance = 0.0
@@ -30,6 +31,7 @@ shader_parameter/tolerance = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab40c"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
+shader_parameter/change_alpha = false
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.8627451, 0.84313726, 0.7882353, 1)
 shader_parameter/tolerance = 0.0
@@ -124,6 +126,7 @@ bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aobxe"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
+shader_parameter/change_alpha = true
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
 shader_parameter/tolerance = 0.0
@@ -135,6 +138,7 @@ font_color = Color(0.24705882, 0.30588236, 0.30980393, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sjh0l"]
 shader = ExtResource("1_s2c3o")
 shader_parameter/colorCount = 1
+shader_parameter/change_alpha = true
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1)
 shader_parameter/replace_colors = PackedColorArray(0.24705882, 0.30588236, 0.30980393, 1)
 shader_parameter/tolerance = 0.0
@@ -291,7 +295,6 @@ text = "    Enter    "
 
 [node name="JoinVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=202412062 groups=["hidden"]]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 75
 
@@ -346,6 +349,7 @@ text = "Create a room
 
 [node name="LobbyVBoxContainer" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=181654514 groups=["hidden"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 75
 
@@ -410,8 +414,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("1_6pedr")
 text = "Start Game"
 
 [node name="ReconnectPopUp" type="ColorRect" parent="BackgroundRect" unique_id=1553960554 groups=["hidden"]]

@@ -164,7 +164,7 @@ vertical_alignment = 1
 
 [node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 25
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=441300253]
 layout_mode = 2
@@ -193,6 +193,7 @@ vertical_alignment = 1
 
 [node name="NameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=468703840]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 2
 script = ExtResource("2_d4f28")
 styleboxes = Dictionary[String, StyleBox]({
@@ -216,6 +217,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_48eim")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_iuea6")
 text = "Name"
+
+[node name="Select" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=583847930]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Select"
 
 [node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
 unique_name_in_owner = true
