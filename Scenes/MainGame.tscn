@@ -47,6 +47,15 @@ border_width_bottom = 15
 border_color = Color(0.1736, 0.56, 0.34748003, 1)
 border_blend = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73a8k"]
+bg_color = Color(0.169, 0.208, 0.22, 0.5)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4f28"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 10
@@ -57,7 +66,16 @@ border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuea6"]
-bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
+bg_color = Color(0.16939999, 0.20819335, 0.22, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48eim"]
+bg_color = Color(0.169, 0.208, 0.22, 0.5)
 border_width_left = 15
 border_width_top = 15
 border_width_right = 15
@@ -178,14 +196,15 @@ layout_mode = 2
 columns = 2
 script = ExtResource("2_d4f28")
 styleboxes = Dictionary[String, StyleBox]({
+"isPlayerHover": SubResource("StyleBoxFlat_73a8k"),
 "isPlayerNormal": SubResource("StyleBoxFlat_kvfik"),
 "isPlayerPressed": SubResource("StyleBoxFlat_3bmkb")
 })
 style_paths = Dictionary[String, String]({
+"isPlayerHover": "hover",
 "isPlayerNormal": "normal",
 "isPlayerPressed": "pressed"
 })
-metadata/_custom_type_script = "uid://7uswub3ti1n3"
 
 [node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector/NameList" unique_id=1474166345]
 custom_minimum_size = Vector2(0, 80)
@@ -193,6 +212,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_d4f28")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_iuea6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_48eim")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_iuea6")
 text = "Name"

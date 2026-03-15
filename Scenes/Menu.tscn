@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_x0ao6"]
 [ext_resource type="Script" uid="uid://ccbckcaq56wsw" path="res://Scripts/LobbyScene/undo_button_handler.gd" id="3_ma218"]
 [ext_resource type="Texture2D" uid="uid://cgrpxlqkp3rpk" path="res://Icons/Settings.png" id="4_aobxe"]
-[ext_resource type="Script" uid="uid://b8swlp0yv80cg" path="res://Scripts/LobbyScene/lobby_player_list.gd" id="5_wfhf6"]
+[ext_resource type="Script" uid="uid://b8swlp0yv80cg" path="res://Scripts/NameLists/lobby_player_list.gd" id="5_wfhf6"]
 [ext_resource type="Texture2D" uid="uid://drrkil48meotv" path="res://Icons/XLogo2.png" id="6_3jcrr"]
 [ext_resource type="Script" uid="uid://dgswvi63rnlo5" path="res://Scripts/LobbyScene/lobby_multiplayer_controller.gd" id="6_idohh"]
 [ext_resource type="Script" uid="uid://chihrg5my1873" path="res://Scripts/VisisbilityButtonHandler.gd" id="8_a8aa6"]
@@ -60,6 +60,24 @@ shadow_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_bottom = 6
 border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd46u"]
+bg_color = Color(0.173, 0.561, 0.349, 0.471)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3nbb"]
+bg_color = Color(0.71, 0.549, 0.141, 0.471)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfhf6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -356,8 +374,14 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("5_wfhf6")
-player_color = Color(0.17254902, 0.56078434, 0.34901962, 0.47058824)
-server_color = Color(0.70980394, 0.54901963, 0.14117648, 0.47058824)
+styleboxes = Dictionary[String, StyleBox]({
+"isPlayer": SubResource("StyleBoxFlat_dd46u"),
+"isServer": SubResource("StyleBoxFlat_n3nbb")
+})
+style_paths = Dictionary[String, String]({
+"isPlayer": "normal",
+"isServer": "normal"
+})
 metadata/_custom_type_script = "uid://cn2ixqtrn4hdb"
 
 [node name="base_label" type="Label" parent="BackgroundRect/MainMarginContainer/LobbyVBoxContainer/LobbyVBox/ScrollContainer/PlayerList" unique_id=1796398421]
