@@ -86,6 +86,10 @@ border_blend = true
 [sub_resource type="ButtonGroup" id="ButtonGroup_iuea6"]
 allow_unpress = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_kvfik"]
+font_size = 44
+font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
+
 [node name="RootControl" type="Control" unique_id=1294606147]
 layout_mode = 3
 anchors_preset = 15
@@ -148,7 +152,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 75
 theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
-theme_override_constants/margin_bottom = 150
+theme_override_constants/margin_bottom = 75
 
 [node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576]
 visible = false
@@ -163,6 +167,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 25
 
@@ -191,7 +196,8 @@ label_settings = SubResource("LabelSettings_d4f28")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=468703840]
+[node name="EffectNameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=468703840]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
@@ -207,7 +213,7 @@ style_paths = Dictionary[String, String]({
 "isPlayerPressed": "pressed"
 })
 
-[node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector/NameList" unique_id=1474166345]
+[node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector/EffectNameList" unique_id=1474166345]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -218,11 +224,22 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_iuea6")
 text = "Name"
 
-[node name="Select" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=583847930]
+[node name="EffectPlayerSelect" type="Button" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=583847930]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Select"
+
+[node name="EffectHint" type="Label" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=113443886]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "The player won't be able to perform their action"
+label_settings = SubResource("LabelSettings_kvfik")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
 unique_name_in_owner = true

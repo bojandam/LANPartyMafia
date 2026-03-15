@@ -1,5 +1,8 @@
 extends Node
 
+
+signal _role_finished
+
 enum State{Day,Night}
 enum Effects{Rumored, Disabled, Defended, Healed}
 
@@ -15,9 +18,19 @@ func _add_effect_to_player(effects:Array[Effects], player:String):
 
 @rpc("authority","call_local")
 func select_player_for_effect(player_list:Array[String],effects:Array[Effects]):
-	#Player_selection_screen.genarate(), .show()
-	#await select player button 
-	pass
+	%EffectNameList.generate(player_list)
+	%EffectSelector.show()
+	#to do: Effect Hint
+	await %EffectPlayerSelect.pressed
+	%EffectSelector.hide()
+	var selection:String = %EffectNameList.selection
+	_add_effect_to_player.rpc_id(1,effects,selection)
+	_call_role_finished.rpc_id(1)
+
+@rpc("any_peer","call_local")
+func _call_role_finished():
+	_role_finished.emit()
+
 
 func has_effect(player:String, effect:Effects):
 	return _effect_tracker.has(player) and _effect_tracker[player].has(effect)
@@ -67,6 +80,7 @@ func run_Night():
 			RoleController.Roles.Maniac:
 				#select_player_for_action(player_lsit,kill)
 				pass
+		await _role_finished
 		#to do: Rest of Night
 		pass
 						
