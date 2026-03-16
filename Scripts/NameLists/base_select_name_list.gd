@@ -8,7 +8,6 @@ func _ready():
 		(func(element:Control): return "isPlayerPressed" if _name_is_player(element) else ""),
 		(func(element:Control): return "isPlayerHover" if _name_is_player(element) else ""),
 	])
-	generate(PlayersManager.get_players().values())
 	
 func _name_is_player(element:Control):
 	return element.name == ConnectionManager.player_info["name"]

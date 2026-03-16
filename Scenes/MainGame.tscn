@@ -29,6 +29,15 @@ font_size = 50
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 shadow_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73a8k"]
+bg_color = Color(0.169, 0.208, 0.22, 0.5)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.1736, 0.56, 0.34748003, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvfik"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 10
@@ -40,15 +49,6 @@ border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bmkb"]
 bg_color = Color(0.17254902, 0.21176471, 0.22352941, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.1736, 0.56, 0.34748003, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73a8k"]
-bg_color = Color(0.169, 0.208, 0.22, 0.5)
 border_width_left = 15
 border_width_top = 15
 border_width_right = 15
@@ -98,6 +98,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ybmw1")
+
+[node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
+unique_name_in_owner = true
+script = ExtResource("1_frf35")
+
+[node name="MultiplayerAdapter" type="Node" parent="." unique_id=2081972608]
+unique_name_in_owner = true
+script = ExtResource("2_frf35")
+
+[node name="PlayerController" type="Node" parent="." unique_id=408389603]
+
+[node name="ServerController" type="Node" parent="." unique_id=1877163961]
+script = ExtResource("3_yprpe")
+
+[node name="DayNightController" type="Node" parent="." unique_id=498592148]
+unique_name_in_owner = true
+script = ExtResource("5_321ql")
 
 [node name="BackgroundRect" type="ColorRect" parent="." unique_id=704240495]
 layout_mode = 1
@@ -155,7 +172,7 @@ theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 75
 
 [node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="WaitForTurn" type="Label" parent="BackgroundRect/MainMarginContainer/NightWait" unique_id=336150436]
@@ -168,6 +185,7 @@ vertical_alignment = 1
 
 [node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 25
 
@@ -240,19 +258,3 @@ label_settings = SubResource("LabelSettings_kvfik")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="MultiplayerController" type="Node" parent="." unique_id=2020333862]
-unique_name_in_owner = true
-script = ExtResource("1_frf35")
-
-[node name="MultiplayerAdapter" type="Node" parent="." unique_id=2081972608]
-unique_name_in_owner = true
-script = ExtResource("2_frf35")
-
-[node name="PlayerController" type="Node" parent="." unique_id=408389603]
-
-[node name="ServerController" type="Node" parent="." unique_id=1877163961]
-script = ExtResource("3_yprpe")
-
-[node name="DayNightController" type="Node" parent="." unique_id=498592148]
-script = ExtResource("5_321ql")

@@ -17,5 +17,5 @@ func _on_button_pressed(button:BaseButton):
 		selection = new_selection
 		selection_changed.emit(selection)
 
-func generate(names_list:Array[Dictionary]):
+func generate(names_list:Array):
 	refresh(names_list)

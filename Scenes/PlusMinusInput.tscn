@@ -10,6 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wcvae"]
 shader = ExtResource("1_emxqx")
 shader_parameter/colorCount = 2
+shader_parameter/change_alpha = false
 shader_parameter/target_colors = PackedColorArray(0, 0, 0, 1, 0.6666667, 0.6666667, 0.6666667, 1)
 shader_parameter/replace_colors = PackedColorArray(0.17254902, 0.21176471, 0.22352941, 1, 0.44, 0.42944, 0.40039998, 1)
 shader_parameter/tolerance = 0.10000000475

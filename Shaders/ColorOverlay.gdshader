@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform int colorCount;
-uniform bool change_alpha = true;
+uniform bool change_alpha = false;
 uniform vec4 target_colors[10] : source_color;
 uniform vec4 replace_colors[10] : source_color; 
 uniform float tolerance : hint_range(0, 1); 

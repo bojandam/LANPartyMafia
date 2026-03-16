@@ -6,6 +6,7 @@ signal name_removed
 signal refreshed
 
 var _base_children:Array
+
 func _ready():
 	_base_children = get_children()
 	for child in get_children():
@@ -29,7 +30,7 @@ func remove_name(id:int):
 			name_removed.emit()
 			return
 
-func refresh(player_list:Array[Dictionary]):
+func refresh(player_list:Array):
 	for child:Node in get_children():
 		child.queue_free()
 	for player_info:Dictionary in player_list:

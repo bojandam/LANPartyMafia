@@ -2,8 +2,6 @@ extends Node
 
 enum Teams{Village,Mafia,Maniac}
 
-	
-
 enum Roles{
 	Villager,
 	Doctor,

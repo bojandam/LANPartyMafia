@@ -8,21 +8,28 @@ enum Effects{Rumored, Disabled, Defended, Healed}
 
 var _first_daynight: bool = true
 var _effect_tracker:Dictionary[String,Array] # Name -> Array[Effects]
-var alive_list: Array[String] = []
+var alive_list: Array[Dictionary] = []
+
+func _ready() -> void:
+	alive_list = PlayersManager.get_players_by_name().values()
+
+
 @rpc("any_peer")
-func _add_effect_to_player(effects:Array[Effects], player:String):
+func _add_effect_to_player(effects:Array, player:String):
 	if multiplayer.is_server():
 		if not _effect_tracker.has(player):
 			_effect_tracker[player] =[]
 		_effect_tracker[player].append_array(effects)
 
 @rpc("authority","call_local")
-func select_player_for_effect(player_list:Array[String],effects:Array[Effects]):
+func select_player_for_effect(player_list:Array,effects:Array):
 	%EffectNameList.generate(player_list)
+	%NightWait.hide()
 	%EffectSelector.show()
 	#to do: Effect Hint
 	await %EffectPlayerSelect.pressed
 	%EffectSelector.hide()
+	%NightWait.show()
 	var selection:String = %EffectNameList.selection
 	_add_effect_to_player.rpc_id(1,effects,selection)
 	_call_role_finished.rpc_id(1)
@@ -43,7 +50,9 @@ func run_Night():
 		pass #to do: first night stuff
 	
 	for role:RoleController.Roles in RoleController.role_order:
-		var players:Array[String] = RoleController.role_tracker[role]
+		var players:Array = []
+		if RoleController.role_tracker.has(role):
+			players = RoleController.role_tracker[role]
 		if players.is_empty():
 			continue
 		match role:
@@ -53,6 +62,7 @@ func run_Night():
 						alive_list,
 						[Effects.Disabled,Effects.Healed] if ConnectionManager.game_settings.get_flag(Settings.Flags.Ubavica_heals) else [Effects.Disabled]
 						)
+					await _role_finished
 			RoleController.Roles.Informant:
 				for player in players:
 					select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
@@ -83,12 +93,3 @@ func run_Night():
 		await _role_finished
 		#to do: Rest of Night
 		pass
-						
-						
-						
-						
-						
-						
-						
-						
-						 
