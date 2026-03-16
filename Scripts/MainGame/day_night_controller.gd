@@ -68,10 +68,17 @@ func run_Night():
 					select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
 						alive_list,
 						[Effects.Rumored])
+					await _role_finished
 			RoleController.Roles.Bodyguard:
 				select_player_for_effect.rpc_id(PlayersManager.get_player_id(players[0]),
 						alive_list,
 						[Effects.Defended])
+				await _role_finished
+			RoleController.Roles.Doctor:
+				select_player_for_effect.rpc_id(PlayersManager.get_player_id(players[0]),
+						alive_list,
+						[Effects.Healed])
+				await _role_finished
 			RoleController.Roles.Mafia:
 				#MultiPlayerSelect(players)
 				#SpyVisual(Sleepwalker)
@@ -90,6 +97,6 @@ func run_Night():
 			RoleController.Roles.Maniac:
 				#select_player_for_action(player_lsit,kill)
 				pass
-		await _role_finished
+		
 		#to do: Rest of Night
 		pass

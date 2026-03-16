@@ -171,7 +171,7 @@ theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 75
 
-[node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576]
+[node name="NightWait" type="CenterContainer" parent="BackgroundRect/MainMarginContainer" unique_id=2095971576 groups=["shown"]]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -183,9 +183,8 @@ label_settings = SubResource("LabelSettings_321ql")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353]
+[node name="EffectSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=1452770353 groups=["hidden"]]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 25
 
@@ -218,6 +217,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("2_d4f28")
 styleboxes = Dictionary[String, StyleBox]({
