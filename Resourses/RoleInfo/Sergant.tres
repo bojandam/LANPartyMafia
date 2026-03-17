@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoleInfo" format=3 uid="uid://yt3le2y0hdb6"]
+
+[ext_resource type="Script" uid="uid://b63gjucr84b6" path="res://Scripts/Resources/RoleInfo.gd" id="1_hj6gg"]
+
+[resource]
+script = ExtResource("1_hj6gg")
+short_info = "Sherif in training. Sees everything the Sherif sees.* Becomes the Sherif if the Sherif dies."
+metadata/_custom_type_script = "uid://b63gjucr84b6"

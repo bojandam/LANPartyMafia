@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoleInfo" format=3 uid="uid://ciy71m7ek7qmc"]
+
+[ext_resource type="Script" uid="uid://b63gjucr84b6" path="res://Scripts/Resources/RoleInfo.gd" id="1_1atem"]
+
+[resource]
+script = ExtResource("1_1atem")
+short_info = "Each night they can either kill or discover the alighnment of a player."
+metadata/_custom_type_script = "uid://b63gjucr84b6"

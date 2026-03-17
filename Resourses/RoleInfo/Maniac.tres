@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoleInfo" format=3 uid="uid://cnu2k8a6kx75b"]
+
+[ext_resource type="Script" uid="uid://b63gjucr84b6" path="res://Scripts/Resources/RoleInfo.gd" id="1_vjn8e"]
+
+[resource]
+script = ExtResource("1_vjn8e")
+short_info = "On their own team. Kills a player per night. Wins if last one alive."
+metadata/_custom_type_script = "uid://b63gjucr84b6"

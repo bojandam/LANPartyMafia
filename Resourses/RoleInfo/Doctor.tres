@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoleInfo" format=3 uid="uid://cj58n61dam6ln"]
+
+[ext_resource type="Script" uid="uid://b63gjucr84b6" path="res://Scripts/Resources/RoleInfo.gd" id="1_wgm1r"]
+
+[resource]
+script = ExtResource("1_wgm1r")
+short_info = "Selects a player who can't die that night. Can't be the same twice in a row."
+effect_label = "Heal"
+metadata/_custom_type_script = "uid://b63gjucr84b6"

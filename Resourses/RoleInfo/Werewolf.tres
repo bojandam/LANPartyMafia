@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoleInfo" format=3 uid="uid://bpx37no4p3lh5"]
+
+[ext_resource type="Script" uid="uid://b63gjucr84b6" path="res://Scripts/Resources/RoleInfo.gd" id="1_0iuwl"]
+
+[resource]
+script = ExtResource("1_0iuwl")
+short_info = "Becomes a mafia if murdered at night."
+metadata/_custom_type_script = "uid://b63gjucr84b6"

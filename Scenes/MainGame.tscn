@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 [ext_resource type="Script" uid="uid://bg35lhuo83j3w" path="res://Scripts/MainGame/server_controller.gd" id="3_yprpe"]
 [ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
+[ext_resource type="Script" uid="uid://cgms2s77fk4vy" path="res://Scenes/effect_selector.gd" id="6_iuea6"]
+[ext_resource type="Script" uid="uid://bpm77em6hbct0" path="res://Scripts/Debug/debug_table.gd" id="8_3bmkb"]
+[ext_resource type="Script" uid="uid://cah1mpoh51w6c" path="res://Scripts/Debug/player_row.gd" id="9_48eim"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mh0ok"]
 font_size = 35
@@ -87,7 +90,7 @@ border_blend = true
 allow_unpress = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvfik"]
-font_size = 44
+font_size = 36
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 
 [node name="RootControl" type="Control" unique_id=1294606147]
@@ -187,6 +190,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 25
+script = ExtResource("6_iuea6")
 
 [node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=441300253]
 layout_mode = 2
@@ -259,3 +263,34 @@ label_settings = SubResource("LabelSettings_kvfik")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="DebugTable" type="VBoxContainer" parent="." unique_id=1954800268 groups=["hidden"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_3bmkb")
+
+[node name="PlayerRow" type="HBoxContainer" parent="DebugTable" unique_id=646989157]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_48eim")
+
+[node name="Name" type="Label" parent="DebugTable/PlayerRow" unique_id=380336388]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Name"
+
+[node name="Role" type="Label" parent="DebugTable/PlayerRow" unique_id=1024946300]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Role"
+
+[node name="Effects" type="Label" parent="DebugTable/PlayerRow" unique_id=195892055]
+layout_mode = 2
+text = "Effects"
