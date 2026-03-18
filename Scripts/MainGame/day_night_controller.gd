@@ -10,6 +10,10 @@ var _first_daynight: bool = true
 var _effect_tracker:Dictionary[String,Array] # Name -> Array[Effects]
 var alive_list: Array[Dictionary] = []
 
+@onready var effect_name_list := %EffectNameList
+
+
+
 func _ready() -> void:
 	alive_list = PlayersManager.get_players_by_name().values()
 
@@ -28,16 +32,21 @@ func _add_effect_to_player(effects:Array, player:String, sender:String):
 		%DebugTable.genarate(alive_list)
 
 @rpc("authority","call_local")
-func select_player_for_effect(player_list:Array,effects:Array,role:RoleController.Roles):
-	%EffectNameList.generate(player_list)
+func select_player_for_effect(player_list:Array,effects:Array,role:RoleController.Roles, show_mafia:bool=false):
 	%EffectSelector.load_role(role)
+	if show_mafia:
+		effect_name_list.push_coloration_check(effect_name_list.isMafiaChecksArray)
+	effect_name_list.generate(player_list)
+	
 	%NightWait.hide()
 	%EffectSelector.show()
 	
 	await %EffectPlayerSelect.pressed
 	%EffectSelector.hide()
+	if show_mafia:
+		effect_name_list.pop_coloration_check(len(effect_name_list.isMafiaChecksArray))
 	%NightWait.show()
-	var selection:String = %EffectNameList.selection
+	var selection:String = effect_name_list.selection
 	_add_effect_to_player.rpc_id(1,effects,selection,ConnectionManager.player_info["name"])
 	_call_role_finished.rpc_id(1)
 
@@ -68,7 +77,8 @@ func _informant_action(player:String):
 	select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
 		alive_list,
 		[Effects.Rumored],
-		RoleController.Roles.Informant)
+		RoleController.Roles.Informant,
+		true)
 
 func _bodyguard_action(player:String):
 	var list = _get_playerless_alive_list(player)
@@ -105,6 +115,7 @@ func _maniac_action(player:String):
 	pass
 
 #endregion
+
 func run_Night():
 	_effect_tracker.clear()
 	

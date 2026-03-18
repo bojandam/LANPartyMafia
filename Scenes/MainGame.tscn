@@ -59,6 +59,33 @@ border_width_bottom = 15
 border_color = Color(0.1736, 0.56, 0.34748003, 1)
 border_blend = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8sds"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr2pg"]
+bg_color = Color(0.16939999, 0.20819335, 0.22, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylpyt"]
+bg_color = Color(0.169, 0.208, 0.22, 0.5)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4f28"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 10
@@ -226,11 +253,17 @@ theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("2_d4f28")
 styleboxes = Dictionary[String, StyleBox]({
+"isMafiaHover": SubResource("StyleBoxFlat_ylpyt"),
+"isMafiaNormal": SubResource("StyleBoxFlat_q8sds"),
+"isMafiaPressed": SubResource("StyleBoxFlat_yr2pg"),
 "isPlayerHover": SubResource("StyleBoxFlat_73a8k"),
 "isPlayerNormal": SubResource("StyleBoxFlat_kvfik"),
 "isPlayerPressed": SubResource("StyleBoxFlat_3bmkb")
 })
 style_paths = Dictionary[String, String]({
+"isMafiaHover": "hover",
+"isMafiaNormal": "normal",
+"isMafiaPressed": "pressed",
 "isPlayerHover": "hover",
 "isPlayerNormal": "normal",
 "isPlayerPressed": "pressed"

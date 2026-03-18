@@ -2,6 +2,7 @@ extends GridContainer
 class_name NameList
 
 signal name_added(node:Node)
+signal player_added(node:Node,player_info:Dictionary)
 signal name_removed
 signal refreshed
 
@@ -20,6 +21,7 @@ func add_name(player_info:Dictionary, base_node:Node): #Abstracted
 	new_item.show()
 	add_child(new_item)
 	name_added.emit(new_item)
+	player_added.emit(new_item,player_info)
 	return new_item
 
 func remove_name(id:int):

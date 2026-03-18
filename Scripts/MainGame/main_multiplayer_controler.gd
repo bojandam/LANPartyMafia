@@ -46,7 +46,7 @@ func _send_player_information(player_info:Dictionary):
 				%MultiplayerAdapter._resume.rpc()
 		else:
 			_kick.rpc_id(player_info["id"])
-			
+
 @rpc("authority")
 func _send_server_player_dict(player_dict):
 	pass
