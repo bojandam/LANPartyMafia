@@ -23,6 +23,14 @@ func _coloration_check(new_node:Control):
 func push_coloration_check_array(check_array:Array):
 	_style_checks_array.append_array(check_array)
 
+func push_coloration_front(check_array:Array):
+	for check in check_array:
+		_style_checks_array.push_front(check)
+
 func pop_coloration_check(ammount:int=1):
 	for i in range(ammount):
 		_style_checks_array.pop_back()
+
+func pop_coloration_check_front(ammount:int=1):
+	for i in range(ammount):
+		_style_checks_array.pop_front()

@@ -10,7 +10,7 @@ var _first_daynight: bool = true
 var _effect_tracker:Dictionary[String,Array] # Name -> Array[Effects]
 var alive_list: Array[Dictionary] = []
 
-@onready var effect_name_list := %EffectNameList
+@onready var effect_name_list = %EffectNameList
 
 
 
@@ -35,7 +35,7 @@ func _add_effect_to_player(effects:Array, player:String, sender:String):
 func select_player_for_effect(player_list:Array,effects:Array,role:RoleController.Roles, show_mafia:bool=false):
 	%EffectSelector.load_role(role)
 	if show_mafia:
-		effect_name_list.push_coloration_check(effect_name_list.isMafiaChecksArray)
+		effect_name_list.push_coloration_front(effect_name_list.isMafiaChecksArray)
 	effect_name_list.generate(player_list)
 	
 	%NightWait.hide()
@@ -44,7 +44,7 @@ func select_player_for_effect(player_list:Array,effects:Array,role:RoleControlle
 	await %EffectPlayerSelect.pressed
 	%EffectSelector.hide()
 	if show_mafia:
-		effect_name_list.pop_coloration_check(len(effect_name_list.isMafiaChecksArray))
+		effect_name_list.pop_coloration_check_front(len(effect_name_list.isMafiaChecksArray))
 	%NightWait.show()
 	var selection:String = effect_name_list.selection
 	_add_effect_to_player.rpc_id(1,effects,selection,ConnectionManager.player_info["name"])
@@ -69,7 +69,7 @@ func _beaty_action(player:String):
 	if not ConnectionManager.game_settings.get_flag(Settings.Flags.Ubavica_heals):
 		effects_list = [Effects.Disabled]
 	select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
-		alive_list,
+		_get_playerless_alive_list(player),
 		effects_list,
 		RoleController.Roles.Beauty)
 

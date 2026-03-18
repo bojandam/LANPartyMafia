@@ -41,6 +41,6 @@ func get_players()->Dictionary[int,Dictionary]:
 
 func get_players_by_name()->Dictionary[String,Dictionary]:
 	return _players_by_name
-	
+
 func get_player_count():
 	return _players.size()

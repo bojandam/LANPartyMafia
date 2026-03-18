@@ -13,7 +13,10 @@ func _on_enter_name_pressed():
 	var inputed_text:String = %NameLineEdit.text
 	if not inputed_text:
 		print("Enter a name")
-		return
+		if not OS.is_debug_build():
+			return
+		else:
+			inputed_text = "Player" 
 	ConnectionManager.player_info["name"] = inputed_text
 	
 	name_screen.hide()

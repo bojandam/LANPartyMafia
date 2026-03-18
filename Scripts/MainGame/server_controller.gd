@@ -5,7 +5,7 @@ func _ready():
 	if multiplayer.is_server():
 		_assign_roles()
 		#to:do show role
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(.1).timeout
 		%DayNightController.run_Night()
 
 

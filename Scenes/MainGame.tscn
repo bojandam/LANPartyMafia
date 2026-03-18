@@ -32,6 +32,33 @@ font_size = 50
 font_color = Color(0.8627451, 0.84313726, 0.7882353, 1)
 shadow_color = Color(0.63529414, 0.48235294, 0.36078432, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylpyt"]
+bg_color = Color(0.169, 0.208, 0.22, 0.5)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8sds"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr2pg"]
+bg_color = Color(0.16939999, 0.20819335, 0.22, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.58, 0, 0, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73a8k"]
 bg_color = Color(0.169, 0.208, 0.22, 0.5)
 border_width_left = 15
@@ -57,33 +84,6 @@ border_width_top = 15
 border_width_right = 15
 border_width_bottom = 15
 border_color = Color(0.1736, 0.56, 0.34748003, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8sds"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.58, 0, 0, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr2pg"]
-bg_color = Color(0.16939999, 0.20819335, 0.22, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.58, 0, 0, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylpyt"]
-bg_color = Color(0.169, 0.208, 0.22, 0.5)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.58, 0, 0, 1)
 border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4f28"]
@@ -229,7 +229,7 @@ layout_mode = 2
 [node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/EffectSelector/PanelContainer/TopText" unique_id=1476056262]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 text = "Select who to:"
 label_settings = SubResource("LabelSettings_iuea6")
 vertical_alignment = 1

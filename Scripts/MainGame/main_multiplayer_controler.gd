@@ -49,4 +49,4 @@ func _send_player_information(player_info:Dictionary):
 
 @rpc("authority")
 func _send_server_player_dict(player_dict):
-	pass
+	PlayersManager.set_player_dict(player_dict)
