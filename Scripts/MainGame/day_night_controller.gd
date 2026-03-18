@@ -17,8 +17,10 @@ var alive_list: Array[Dictionary] = []
 func _ready() -> void:
 	alive_list = PlayersManager.get_players_by_name().values()
 
+
 func _player_has_effect(player,effect):
 	return _effect_tracker.has(player) and _effect_tracker[player].has(effect)
+
 
 @rpc("any_peer","call_local")
 func _add_effect_to_player(effects:Array, player:String, sender:String):
@@ -31,8 +33,12 @@ func _add_effect_to_player(effects:Array, player:String, sender:String):
 		%DebugTable.show()
 		%DebugTable.genarate(alive_list)
 
+
 @rpc("authority","call_local")
 func select_player_for_effect(player_list:Array,effects:Array,role:RoleController.Roles, show_mafia:bool=false):
+	await PlayersManager.update_player_list()
+	print("effect continued")
+	#await get_tree().create_timer(.1).timeout
 	%EffectSelector.load_role(role)
 	if show_mafia:
 		effect_name_list.push_coloration_front(effect_name_list.isMafiaChecksArray)
@@ -49,6 +55,7 @@ func select_player_for_effect(player_list:Array,effects:Array,role:RoleControlle
 	var selection:String = effect_name_list.selection
 	_add_effect_to_player.rpc_id(1,effects,selection,ConnectionManager.player_info["name"])
 	_call_role_finished.rpc_id(1)
+
 
 @rpc("any_peer","call_local")
 func _call_role_finished():

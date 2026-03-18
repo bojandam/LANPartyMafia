@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://js4torxtjrxh" path="res://Scripts/MainGame/MainGame_multiplayer_adapter.gd" id="2_frf35"]
 [ext_resource type="Script" uid="uid://bg35lhuo83j3w" path="res://Scripts/MainGame/server_controller.gd" id="3_yprpe"]
 [ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
-[ext_resource type="Script" uid="uid://cgms2s77fk4vy" path="res://Scenes/effect_selector.gd" id="6_iuea6"]
+[ext_resource type="Script" uid="uid://cgms2s77fk4vy" path="res://Scripts/MainGame/effect_selector.gd" id="6_iuea6"]
 [ext_resource type="Script" uid="uid://bpm77em6hbct0" path="res://Scripts/Debug/debug_table.gd" id="8_3bmkb"]
 [ext_resource type="Script" uid="uid://cah1mpoh51w6c" path="res://Scripts/Debug/player_row.gd" id="9_48eim"]
 
