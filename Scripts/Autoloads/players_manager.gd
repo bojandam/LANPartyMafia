@@ -48,9 +48,10 @@ func get_player_count():
 	return _players.size()
 
 func update_player_list():
-	request_player_dict.rpc_id(1,multiplayer.get_unique_id())
-	await _update_request_finished
-	print("update finished")
+	if not multiplayer.is_server():
+		request_player_dict.rpc_id(1,multiplayer.get_unique_id())
+		await _update_request_finished
+		print("update finished")
 
 @rpc("any_peer","call_local")
 func request_player_dict(requester_id:int):

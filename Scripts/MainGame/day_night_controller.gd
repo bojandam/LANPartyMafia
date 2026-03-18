@@ -10,6 +10,8 @@ var _first_daynight: bool = true
 var _effect_tracker:Dictionary[String,Array] # Name -> Array[Effects]
 var alive_list: Array[Dictionary] = []
 
+var _healing_tracker:Dictionary[String,String] = {}
+
 @onready var effect_name_list = %EffectNameList
 
 
@@ -70,6 +72,15 @@ func _get_playerless_alive_list(player):
 	var list = alive_list.duplicate()
 	list.erase(PlayersManager.get_players_by_name()[player])
 	return list
+	
+func _remove_team_from_array(array:Array, team):
+	var to_erase = []
+	for player in array:
+		if RoleController.role_info[player["role"]]["team"] == team:
+			to_erase.push_back(player)
+	for val in to_erase:
+		array.erase(val)
+	return array
 
 func _beaty_action(player:String):
 	var effects_list = [Effects.Disabled,Effects.Healed]
@@ -81,25 +92,27 @@ func _beaty_action(player:String):
 		RoleController.Roles.Beauty)
 
 func _informant_action(player:String):
+	var can_switch_mafia_flag = ConnectionManager.game_settings.Flags.Potkazuvac_Mafia_to_Village
+	var list = alive_list.duplicate()
+	if not ConnectionManager.game_settings.get_flag(can_switch_mafia_flag):
+		_remove_team_from_array(list,RoleController.Teams.Mafia)
 	select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
-		alive_list,
+		list,
 		[Effects.Rumored],
 		RoleController.Roles.Informant,
 		true)
 
 func _bodyguard_action(player:String):
-	var list = _get_playerless_alive_list(player)
 	select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
-		alive_list,
+		_get_playerless_alive_list(player),
 		[Effects.Defended],
 		RoleController.Roles.Bodyguard)
 
-func _doctor_action(player:String):
+func _doctor_action(player:String): 
 	select_player_for_effect.rpc_id(PlayersManager.get_player_id(player),
 		alive_list,
 		[Effects.Healed],
 		RoleController.Roles.Doctor)
-
 
 
 func _mafia_action(player:String):

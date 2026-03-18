@@ -1,7 +1,6 @@
 extends RadioColoredNameList
 
 
-
 func _ready():
 	super._ready()
 	_style_checks_array.append_array([
