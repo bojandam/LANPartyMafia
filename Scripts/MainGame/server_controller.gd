@@ -3,9 +3,9 @@ extends Node
 
 func _ready():
 	if multiplayer.is_server():
-		_assign_roles()
-		#to:do show role
+		await _assign_roles()
 		await get_tree().create_timer(.1).timeout
+		#to:do show role  
 		%DayNightController.run_Night()
 
 

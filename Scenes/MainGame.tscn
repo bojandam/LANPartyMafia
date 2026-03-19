@@ -244,7 +244,7 @@ label_settings = SubResource("LabelSettings_d4f28")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EffectNameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=468703840]
+[node name="EffectNameList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=468703840 node_paths=PackedStringArray("selection_button")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -252,6 +252,7 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
 script = ExtResource("2_d4f28")
+selection_button = NodePath("../EffectPlayerSelect")
 styleboxes = Dictionary[String, StyleBox]({
 "isMafiaHover": SubResource("StyleBoxFlat_ylpyt"),
 "isMafiaNormal": SubResource("StyleBoxFlat_q8sds"),

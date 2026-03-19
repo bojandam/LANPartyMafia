@@ -56,17 +56,15 @@ func update_player_list():
 @rpc("any_peer","call_local")
 func request_player_dict(requester_id:int):
 	if multiplayer.is_server() and requester_id!=1:
-		send_player_name_dict.rpc_id(requester_id,_players_by_name)
 		send_player_id_dict.rpc_id(requester_id,_players)
 
-
-@rpc("authority","call_remote")
-func send_player_name_dict(player_name_dict):
-	_players_by_name = player_name_dict
+ 
 
 @rpc("authority","call_remote")
 func send_player_id_dict(player_id_dict):
 	_players = player_id_dict
+	for player_info:Dictionary in _players.values():
+		_players_by_name[player_info["name"]]=player_info
 	player_list_set.emit(_players)
 	player_list_changed.emit()
 	_update_request_finished.emit()
