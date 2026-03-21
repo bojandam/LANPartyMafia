@@ -4,6 +4,10 @@
 
 [resource]
 script = ExtResource("1_wgm1r")
-short_info = "Selects a player who can't die that night. Can't be the same twice in a row."
+short_info = "Selects a player who can't die that night. ~*Can't be the same player~**Can't heal himself* twice in a row."
 effect_label = "Heal"
+role_name = "Doctor"
+rules = Dictionary[int, String]({
+3: "*"
+})
 metadata/_custom_type_script = "uid://b63gjucr84b6"

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Settings" format=3 uid="uid://c38ae5w4kl8td"]
-
-[ext_resource type="Script" uid="uid://bdi0vo6lbjdse" path="res://Scripts/Resources/game_settings.gd" id="1_v5ypp"]
-
-[resource]
-script = ExtResource("1_v5ypp")
-BitFlag = 19

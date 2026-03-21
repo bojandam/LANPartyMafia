@@ -4,6 +4,11 @@
 
 [resource]
 script = ExtResource("1_wb5v2")
-short_info = "Selects a player who won't perform their action that night. That player can't die that night.*"
+short_info = "Selects a player who won't perform their action*, but can't die* that night."
 effect_label = "Disable"
+action_hint = "Select a player to spend the night with. They *can't be killed, but*won't be able to perform their action that night."
+role_name = "Beauty"
+rules = Dictionary[int, String]({
+2: "*"
+})
 metadata/_custom_type_script = "uid://b63gjucr84b6"

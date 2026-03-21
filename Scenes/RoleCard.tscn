@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://decnn32f1w0dk"]
+
+[ext_resource type="Script" uid="uid://btcumw8r52pcn" path="res://Scripts/RoleCard.gd" id="1_vvk52"]
+[ext_resource type="Texture2D" uid="uid://cn3ka1an0p178" path="res://icon.svg" id="2_hldlb"]
+
+[node name="RoleCard" type="Control" unique_id=1900348301]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vvk52")
+role = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=1214492405]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.74, 0.3848, 0.69855994, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=650484907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer" unique_id=1203536412]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Name" type="Label" parent="Background/MarginContainer/VBoxContainer" unique_id=1305143113]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.10800001, 0.2776, 1)
+theme_override_font_sizes/font_size = 45
+text = "Role Name"
+horizontal_alignment = 1
+
+[node name="Front" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer" unique_id=360093554]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/Front" unique_id=1353978327]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Icon" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/Front/MarginContainer" unique_id=1001574841]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_hldlb")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/Front" unique_id=1415181740]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TheTeamIs" type="Label" parent="Background/MarginContainer/VBoxContainer/Front/HBoxContainer" unique_id=740475123]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 40
+text = "Team:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Team" type="Label" parent="Background/MarginContainer/VBoxContainer/Front/HBoxContainer" unique_id=517958307]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.39866674, 0.46, 1)
+theme_override_font_sizes/font_size = 40
+text = "Village"
+vertical_alignment = 1
+
+[node name="ShortDisc" type="Label" parent="Background/MarginContainer/VBoxContainer/Front" unique_id=1598171504]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "This is the short description of the role's role. Each Night you wake up bla bla bla"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Back" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer" unique_id=732289516]
+visible = false
+layout_mode = 2
+
+[node name="LongDisc" type="Label" parent="Background/MarginContainer/VBoxContainer/Back" unique_id=666687003]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "This is the back of the card. Here we have a more detailed explanation. You wake up at night and do bla bla.
+Exception one is this ...
+Exception two is this ...
+UwU"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

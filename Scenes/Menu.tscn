@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4ixehevprttr"]
 
 [ext_resource type="Script" uid="uid://d181wafurmaw0" path="res://Scripts/LobbyScene/lobby_multiplayer_adapter.gd" id="1_3kf3n"]
-[ext_resource type="StyleBox" uid="uid://c76a20cqr8lt2" path="res://Resourses/ButtonStyle.tres" id="1_6pedr"]
+[ext_resource type="StyleBox" uid="uid://c76a20cqr8lt2" path="res://Resourses/Other/ButtonStyle.tres" id="1_6pedr"]
 [ext_resource type="Shader" uid="uid://bcfmffei2vdg5" path="res://Shaders/ColorOverlay.gdshader" id="1_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://cko7vgnrdd0f3" path="res://Icons/BackLogo.png" id="1_syfuq"]
 [ext_resource type="Theme" uid="uid://bnknvu1ko05k4" path="res://Theme/main_theme.tres" id="1_x0ao6"]
