@@ -60,4 +60,4 @@ func _after_connection_work():
 			)
 
 func _on_start_game_button_button_up() -> void:
-	ConnectionManager.StartGame.rpc()
+	ConnectionManager.StartGame.rpc(ConnectionManager.game_settings.BitFlag)

@@ -19,6 +19,7 @@ var prev_chosen:String = ""
 func _storing_prev_selection():
 	var chosen:BaseButton = _button_group.get_pressed_button()
 	prev_chosen = chosen.name
+	
 func _doctor_twice_in_a_row_check(element:Control):
 	var are_same = element.name == prev_chosen
 	if not are_same:
