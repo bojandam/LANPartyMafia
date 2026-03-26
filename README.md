@@ -1,10 +1,10 @@
 # About the project
-My friends and I like the party/board game mafia, however, for the game to work 1 person needs to not actually play it, and perform a task which can be easily automated. So, I decided to make a Local Multiplayer game that will act like that person. 
+My friends and I enjoy the party/board game Mafia. However, for the game to work, one person has to sit out and take on a role that can be easily automated. So, I decided to create a local multiplayer game that fulfills that role.
 
-I chose to attempt this because I like game devolpment, it is a hobby of mine. This is also my first "serious" attempt at making a fininshed product, and I'm motivated by the fact that I know that there are people who will play the game (my frineds) and give me feedback. I also wanted to learn the basics of making a multiplayer game (in Godot).  
+I chose to pursue this project because I enjoy game development, it’s a hobby of mine. This is also my first "serious" attempt at creating a finished product, and I’m motivated by the fact that I know people (my friends) will play the game and give me feedback. I also wanted to learn the basics of making a multiplayer game in Godot.
 
-The game is being implemented in Godot. 
+The game is being developed in the Godot Game engine.
 
-It's currently ~3/5 of the way done. (As all do, I underestimated how much work there is).
+It's currently about 3/5 complete. (As all do, I underestimated how much work it would take).
 
-Progress is stagnating due to my focus on my studies. 
+Progress has slowed due to my focus on my studies.
