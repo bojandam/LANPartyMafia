@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://cbf6w01onrj4y" path="res://Scripts/MainGame/day_night_controller.gd" id="5_321ql"]
 [ext_resource type="Script" uid="uid://cgms2s77fk4vy" path="res://Scripts/MainGame/effect_selector.gd" id="6_iuea6"]
 [ext_resource type="Script" uid="uid://bpm77em6hbct0" path="res://Scripts/Debug/debug_table.gd" id="8_3bmkb"]
+[ext_resource type="Script" uid="uid://c3s1rjjtmpg1i" path="res://Scripts/NameLists/unanimus_radio_select.gd" id="8_48eim"]
 [ext_resource type="Script" uid="uid://cah1mpoh51w6c" path="res://Scripts/Debug/player_row.gd" id="9_48eim"]
+[ext_resource type="LabelSettings" uid="uid://bevpa56smv1x3" path="res://Resourses/Other/PlayerHintLabel.tres" id="9_73a8k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mh0ok"]
 font_size = 35
@@ -290,6 +292,89 @@ text = "Select"
 
 [node name="EffectHint" type="Label" parent="BackgroundRect/MainMarginContainer/EffectSelector" unique_id=113443886]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "The player won't be able to perform their action"
+label_settings = SubResource("LabelSettings_kvfik")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="UnanumusSelector" type="VBoxContainer" parent="BackgroundRect/MainMarginContainer" unique_id=783965910 groups=["hidden"]]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 25
+script = ExtResource("6_iuea6")
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundRect/MainMarginContainer/UnanumusSelector" unique_id=311286252]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_321ql")
+
+[node name="TopText" type="HBoxContainer" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/PanelContainer" unique_id=435664170]
+layout_mode = 2
+
+[node name="Available rooms" type="Label" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/PanelContainer/TopText" unique_id=1373502372]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Select who to:"
+label_settings = SubResource("LabelSettings_iuea6")
+vertical_alignment = 1
+
+[node name="EffectText" type="Label" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/PanelContainer/TopText" unique_id=1018425789]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Disable"
+label_settings = SubResource("LabelSettings_d4f28")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsList" type="GridContainer" parent="BackgroundRect/MainMarginContainer/UnanumusSelector" unique_id=1548608734]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2
+script = ExtResource("8_48eim")
+
+[node name="base_button" type="Button" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/OptionsList" unique_id=638608217]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_d4f28")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iuea6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_48eim")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_iuea6")
+text = "Name"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/OptionsList/base_button" unique_id=381491151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -4.0
+offset_right = -7.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+reverse_fill = true
+
+[node name="Label" type="Label" parent="BackgroundRect/MainMarginContainer/UnanumusSelector/OptionsList/base_button/HFlowContainer" unique_id=2074139304]
+layout_mode = 2
+text = "Marija"
+label_settings = ExtResource("9_73a8k")
+
+[node name="EffectPlayerSelect" type="Button" parent="BackgroundRect/MainMarginContainer/UnanumusSelector" unique_id=663554825]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Select"
+
+[node name="EffectHint" type="Label" parent="BackgroundRect/MainMarginContainer/UnanumusSelector" unique_id=556544097]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 text = "The player won't be able to perform their action"
