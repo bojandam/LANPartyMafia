@@ -1,9 +1,12 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="ApeBbAeXluRbwKagwfIt">
-    <mxGraphModel dx="680" dy="361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1414" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="520" width="400" x="800" y="360" as="geometry" />
+        </mxCell>
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
           <mxGeometry height="320" width="520" x="200" y="360" as="geometry" />
         </mxCell>
@@ -90,8 +93,8 @@
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-9" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" value="todo: Reccnection" vertex="1">
           <mxGeometry height="80" width="120" x="310" y="640" as="geometry" />
         </mxCell>
-        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-10" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;" value="" vertex="1">
-          <mxGeometry height="80" width="120" x="920" y="320" as="geometry" />
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-10" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;" value="Server side&lt;div&gt;Lobby&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="950" y="320" as="geometry" />
         </mxCell>
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-15" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-14">
           <mxGeometry relative="1" as="geometry" />
@@ -108,11 +111,23 @@
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-16" parent="Ez8K2-0Iy64ex_qMkTuw-17" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="Ok?" vertex="1">
           <mxGeometry height="30" width="60" y="15" as="geometry" />
         </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-24" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-18" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Start Lobby" vertex="1">
           <mxGeometry height="60" width="120" x="940" y="650" as="geometry" />
         </mxCell>
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-19" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-18">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-21" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Randomly&lt;div&gt;Assign Roles&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="1020" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-25" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-23" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Lock Lobby" vertex="1">
+          <mxGeometry height="60" width="120" x="840" y="750" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
