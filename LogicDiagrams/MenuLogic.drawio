@@ -1,9 +1,12 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="ApeBbAeXluRbwKagwfIt">
-    <mxGraphModel dx="1178" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="680" dy="361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="320" width="520" x="200" y="360" as="geometry" />
+        </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Menu&lt;/font&gt;&lt;/b&gt;" vertex="1">
           <mxGeometry height="80" width="160" x="360" y="160" as="geometry" />
         </mxCell>
@@ -35,16 +38,16 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-39" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Send IP" vertex="1">
-          <mxGeometry height="60" width="140" x="390" y="420" as="geometry" />
+          <mxGeometry height="60" width="100" x="385" y="420" as="geometry" />
         </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-40" parent="TVOId60HiAkNmi75MGlm-39" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="-&amp;gt; IP" vertex="1">
-          <mxGeometry height="30" width="140" y="30" as="geometry" />
+          <mxGeometry height="30" width="100" y="30" as="geometry" />
         </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-44" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="Recive IP" vertex="1">
-          <mxGeometry height="60" width="140" x="590" y="420" as="geometry" />
+          <mxGeometry height="60" width="115" x="540" y="420" as="geometry" />
         </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-45" parent="TVOId60HiAkNmi75MGlm-44" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="- record IP" vertex="1">
-          <mxGeometry height="30" width="140" y="30" as="geometry" />
+          <mxGeometry height="30" width="115" y="30" as="geometry" />
         </mxCell>
         <mxCell id="TVOId60HiAkNmi75MGlm-47" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontStyle=0;startSize=30;horizontal=1;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Enter Name&lt;/font&gt;" vertex="1">
           <mxGeometry height="40" width="80" x="395" y="530" as="geometry" />
@@ -81,11 +84,35 @@
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-4" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;dashed=1;dashPattern=1 1;" target="TVOId60HiAkNmi75MGlm-39">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-8" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;" value="Server Select" vertex="1">
-          <mxGeometry height="80" width="120" x="437.5" y="310" as="geometry" />
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-8" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;" value="Joining a Server" vertex="1">
+          <mxGeometry height="80" width="135" x="395" y="320" as="geometry" />
         </mxCell>
         <mxCell id="Ez8K2-0Iy64ex_qMkTuw-9" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" value="todo: Reccnection" vertex="1">
           <mxGeometry height="80" width="120" x="310" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-10" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;" value="" vertex="1">
+          <mxGeometry height="80" width="120" x="920" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-15" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-13" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Select Roles" vertex="1">
+          <mxGeometry height="60" width="120" x="840" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-17" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="80" width="60" x="970" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-14" parent="Ez8K2-0Iy64ex_qMkTuw-17" style="triangle;whiteSpace=wrap;html=1;shapeInside=1;rotation=90;" value="" vertex="1">
+          <mxGeometry height="80" width="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-16" parent="Ez8K2-0Iy64ex_qMkTuw-17" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="Ok?" vertex="1">
+          <mxGeometry height="30" width="60" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-18" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="Start Lobby" vertex="1">
+          <mxGeometry height="60" width="120" x="940" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="Ez8K2-0Iy64ex_qMkTuw-19" edge="1" parent="1" source="Ez8K2-0Iy64ex_qMkTuw-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="Ez8K2-0Iy64ex_qMkTuw-18">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
